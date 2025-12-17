@@ -7,11 +7,84 @@ datasource db {
     provider = "postgresql"
 }
 
+enum ProjectInviteStatus {
+    PENDING_INVITE //AFTER INVITED
+    ACTIVE //AFTER ACCEPTED
+    REJECTED //AFTER REJECTED
+    INACTIVE //MANUALLY DEACTIVATED
+}
+
+model Account {
+    id                   String                @id @default(uuid())
+    email                String                @unique
+    password             String
+    createdAt            DateTime              @default(now())
+    avatar               String?
+    projects             Project[]
+    projectCollaborators ProjectCollaborator[]
+}
+
 model Project {
-    id          String   @id @default(uuid())
-    name        String
-    description String?
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime? @updatedAt
-    coverImage  String?
+    id                   String                @id @default(uuid())
+    name                 String?
+    description          String?
+    createdAt            DateTime              @default(now())
+    updatedAt            DateTime?             @updatedAt
+    coverImage           String?
+    createdBy            String? //prisma demands a default value for required fields
+    createdByAccount     Account?              @relation(fields: [createdBy], references: [id])
+    tasks                Task[]
+    projectCollaborators ProjectCollaborator[]
+}
+
+model ProjectCollaborator {
+    id             String              @id @default(uuid())
+    status         ProjectInviteStatus @default(PENDING_INVITE)
+    accountId      String
+    projectId      String
+    inviteDueDate  DateTime?
+    invitedAccount Account             @relation(fields: [accountId], references: [id])
+    targetProject  Project             @relation(fields: [projectId], references: [id])
+    createdAt      DateTime            @default(now())
+    updatedAt      DateTime?           @updatedAt
+    tasks          Task[]
+}
+
+model Task {
+    id           String               @id @default(uuid())
+    name         String?
+    description  String?
+    createdAt    DateTime             @default(now())
+    updatedAt    DateTime?            @updatedAt
+    projectId    String
+    project      Project?             @relation(fields: [projectId], references: [id])
+    status       String?
+    startDate    DateTime?
+    dueDate      DateTime?
+    assigneeId   String?
+    assignee     ProjectCollaborator? @relation(fields: [assigneeId], references: [id])
+    taskStatusId String?
+    taskStatus   TaskStatus?          @relation(fields: [taskStatusId], references: [id])
+}
+
+model TaskStatus {
+    id          String  @id @default(uuid())
+    text        String
+    color       String
+    isDefault   Boolean @default(false)
+    tasks       Task[]
+    statusOrder Int     @default(0)
+
+    transitionsFrom StatusTransition[] @relation("transitionFrom")
+    transitionsTo   StatusTransition[] @relation("transitionTo")
+}
+
+model StatusTransition {
+    id               String     @id @default(uuid())
+    fromTaskStatusId String
+    toTaskStatusId   String
+    fromTaskStatus   TaskStatus @relation("transitionFrom", fields: [fromTaskStatusId], references: [id])
+    toTaskStatus     TaskStatus @relation("transitionTo", fields: [toTaskStatusId], references: [id])
+    createdAt        DateTime   @default(now())
+    updatedAt        DateTime?  @updatedAt
 }

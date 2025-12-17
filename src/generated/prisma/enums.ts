@@ -9,7 +9,11 @@
 * 🟢 You can import this file directly.
 */
 
+export const ProjectInviteStatus = {
+  PENDING_INVITE: 'PENDING_INVITE',
+  ACTIVE: 'ACTIVE',
+  REJECTED: 'REJECTED',
+  INACTIVE: 'INACTIVE'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type ProjectInviteStatus = (typeof ProjectInviteStatus)[keyof typeof ProjectInviteStatus]

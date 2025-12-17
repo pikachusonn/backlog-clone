@@ -51,7 +51,12 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Project: 'Project'
+  Account: 'Account',
+  Project: 'Project',
+  ProjectCollaborator: 'ProjectCollaborator',
+  Task: 'Task',
+  TaskStatus: 'TaskStatus',
+  StatusTransition: 'StatusTransition'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,16 +75,80 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const AccountScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  createdAt: 'createdAt',
+  avatar: 'avatar'
+} as const
+
+export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
 export const ProjectScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  coverImage: 'coverImage'
+  coverImage: 'coverImage',
+  createdBy: 'createdBy'
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+export const ProjectCollaboratorScalarFieldEnum = {
+  id: 'id',
+  status: 'status',
+  accountId: 'accountId',
+  projectId: 'projectId',
+  inviteDueDate: 'inviteDueDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProjectCollaboratorScalarFieldEnum = (typeof ProjectCollaboratorScalarFieldEnum)[keyof typeof ProjectCollaboratorScalarFieldEnum]
+
+
+export const TaskScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  projectId: 'projectId',
+  status: 'status',
+  startDate: 'startDate',
+  dueDate: 'dueDate',
+  assigneeId: 'assigneeId',
+  taskStatusId: 'taskStatusId'
+} as const
+
+export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+export const TaskStatusScalarFieldEnum = {
+  id: 'id',
+  text: 'text',
+  color: 'color',
+  isDefault: 'isDefault',
+  statusOrder: 'statusOrder'
+} as const
+
+export type TaskStatusScalarFieldEnum = (typeof TaskStatusScalarFieldEnum)[keyof typeof TaskStatusScalarFieldEnum]
+
+
+export const StatusTransitionScalarFieldEnum = {
+  id: 'id',
+  fromTaskStatusId: 'fromTaskStatusId',
+  toTaskStatusId: 'toTaskStatusId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StatusTransitionScalarFieldEnum = (typeof StatusTransitionScalarFieldEnum)[keyof typeof StatusTransitionScalarFieldEnum]
 
 
 export const SortOrder = {
