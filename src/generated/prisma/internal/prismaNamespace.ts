@@ -951,7 +951,8 @@ export const TaskStatusScalarFieldEnum = {
   text: 'text',
   color: 'color',
   isDefault: 'isDefault',
-  statusOrder: 'statusOrder'
+  statusOrder: 'statusOrder',
+  projectId: 'projectId'
 } as const
 
 export type TaskStatusScalarFieldEnum = (typeof TaskStatusScalarFieldEnum)[keyof typeof TaskStatusScalarFieldEnum]

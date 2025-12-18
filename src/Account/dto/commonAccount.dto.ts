@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 
-export class CreatedByAccountDto {
+export class CommonAccountDto {
   @Expose()
   id: string;
 
@@ -13,7 +13,7 @@ export class CreatedByAccountDto {
   @Expose()
   avatar: string;
 
-  constructor(partial: Partial<CreatedByAccountDto>) {
+  constructor(partial: Partial<CommonAccountDto>) {
     Object.assign(this, partial);
   }
 }

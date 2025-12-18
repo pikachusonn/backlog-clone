@@ -1,8 +1,9 @@
 import { Expose, Type } from 'class-transformer';
 import { CommonAccountDto } from '../../Account/dto/commonAccount.dto.js';
 import { ProjectRole } from '../../constant/common.js';
+import { ProjectCollaboratorDto } from '../../ProjectCollaborator/dto/projectCollaborator.dto.js';
 
-export class ProjectDto {
+export class ProjectDetailDto {
   @Expose()
   id: string | null;
   @Expose()
@@ -20,7 +21,10 @@ export class ProjectDto {
   createdByAccount: CommonAccountDto | null;
   @Expose()
   projectRole: ProjectRole;
-  constructor(partial: Partial<ProjectDto>) {
+  @Expose()
+  @Type(() => ProjectCollaboratorDto)
+  projectCollaborators: ProjectCollaboratorDto[];
+  constructor(partial: Partial<ProjectDetailDto>) {
     Object.assign(this, partial);
   }
 }
