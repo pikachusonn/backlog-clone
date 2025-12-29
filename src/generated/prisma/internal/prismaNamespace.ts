@@ -951,6 +951,7 @@ export const TaskStatusScalarFieldEnum = {
   text: 'text',
   color: 'color',
   isDefault: 'isDefault',
+  isDoneStatus: 'isDoneStatus',
   statusOrder: 'statusOrder',
   projectId: 'projectId'
 } as const

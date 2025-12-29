@@ -6,7 +6,7 @@ import { DefaultTaskStatusText } from '../constant/common.js';
 
 @Injectable()
 export class ProjectRepository {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   findAll = async (): Promise<Project[]> => {
     return this.prisma.project.findMany({
@@ -66,6 +66,7 @@ export class ProjectRepository {
               text: status.text,
               color: status.color,
               isDefault: true,
+              isDoneStatus: status.isDoneStatus,
               statusOrder: index,
             })),
           },

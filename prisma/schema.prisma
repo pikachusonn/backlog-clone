@@ -69,12 +69,13 @@ model Task {
 }
 
 model TaskStatus {
-    id          String  @id @default(uuid())
-    text        String
-    color       String
-    isDefault   Boolean @default(false)
-    tasks       Task[]
-    statusOrder Int     @default(0)
+    id           String  @id @default(uuid())
+    text         String
+    color        String
+    isDefault    Boolean @default(false)
+    isDoneStatus Boolean? @default(false)
+    tasks        Task[]
+    statusOrder  Int     @default(0)
 
     projectId String
     project   Project @relation(fields: [projectId], references: [id])

@@ -4,7 +4,7 @@ import { CreateProjectDto } from './dto/createProject.dto.js';
 
 @Controller('projects')
 export class ProjectController {
-  constructor(private readonly projectService: ProjectService) { }
+  constructor(private readonly projectService: ProjectService) {}
 
   @Get()
   async findAll() {

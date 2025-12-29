@@ -39,6 +39,7 @@ export type TaskStatusMinAggregateOutputType = {
   text: string | null
   color: string | null
   isDefault: boolean | null
+  isDoneStatus: boolean | null
   statusOrder: number | null
   projectId: string | null
 }
@@ -48,6 +49,7 @@ export type TaskStatusMaxAggregateOutputType = {
   text: string | null
   color: string | null
   isDefault: boolean | null
+  isDoneStatus: boolean | null
   statusOrder: number | null
   projectId: string | null
 }
@@ -57,6 +59,7 @@ export type TaskStatusCountAggregateOutputType = {
   text: number
   color: number
   isDefault: number
+  isDoneStatus: number
   statusOrder: number
   projectId: number
   _all: number
@@ -76,6 +79,7 @@ export type TaskStatusMinAggregateInputType = {
   text?: true
   color?: true
   isDefault?: true
+  isDoneStatus?: true
   statusOrder?: true
   projectId?: true
 }
@@ -85,6 +89,7 @@ export type TaskStatusMaxAggregateInputType = {
   text?: true
   color?: true
   isDefault?: true
+  isDoneStatus?: true
   statusOrder?: true
   projectId?: true
 }
@@ -94,6 +99,7 @@ export type TaskStatusCountAggregateInputType = {
   text?: true
   color?: true
   isDefault?: true
+  isDoneStatus?: true
   statusOrder?: true
   projectId?: true
   _all?: true
@@ -190,6 +196,7 @@ export type TaskStatusGroupByOutputType = {
   text: string
   color: string
   isDefault: boolean
+  isDoneStatus: boolean | null
   statusOrder: number
   projectId: string
   _count: TaskStatusCountAggregateOutputType | null
@@ -222,6 +229,7 @@ export type TaskStatusWhereInput = {
   text?: Prisma.StringFilter<"TaskStatus"> | string
   color?: Prisma.StringFilter<"TaskStatus"> | string
   isDefault?: Prisma.BoolFilter<"TaskStatus"> | boolean
+  isDoneStatus?: Prisma.BoolNullableFilter<"TaskStatus"> | boolean | null
   statusOrder?: Prisma.IntFilter<"TaskStatus"> | number
   projectId?: Prisma.StringFilter<"TaskStatus"> | string
   tasks?: Prisma.TaskListRelationFilter
@@ -235,6 +243,7 @@ export type TaskStatusOrderByWithRelationInput = {
   text?: Prisma.SortOrder
   color?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isDoneStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   statusOrder?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   tasks?: Prisma.TaskOrderByRelationAggregateInput
@@ -251,6 +260,7 @@ export type TaskStatusWhereUniqueInput = Prisma.AtLeast<{
   text?: Prisma.StringFilter<"TaskStatus"> | string
   color?: Prisma.StringFilter<"TaskStatus"> | string
   isDefault?: Prisma.BoolFilter<"TaskStatus"> | boolean
+  isDoneStatus?: Prisma.BoolNullableFilter<"TaskStatus"> | boolean | null
   statusOrder?: Prisma.IntFilter<"TaskStatus"> | number
   projectId?: Prisma.StringFilter<"TaskStatus"> | string
   tasks?: Prisma.TaskListRelationFilter
@@ -264,6 +274,7 @@ export type TaskStatusOrderByWithAggregationInput = {
   text?: Prisma.SortOrder
   color?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isDoneStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   statusOrder?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   _count?: Prisma.TaskStatusCountOrderByAggregateInput
@@ -281,6 +292,7 @@ export type TaskStatusScalarWhereWithAggregatesInput = {
   text?: Prisma.StringWithAggregatesFilter<"TaskStatus"> | string
   color?: Prisma.StringWithAggregatesFilter<"TaskStatus"> | string
   isDefault?: Prisma.BoolWithAggregatesFilter<"TaskStatus"> | boolean
+  isDoneStatus?: Prisma.BoolNullableWithAggregatesFilter<"TaskStatus"> | boolean | null
   statusOrder?: Prisma.IntWithAggregatesFilter<"TaskStatus"> | number
   projectId?: Prisma.StringWithAggregatesFilter<"TaskStatus"> | string
 }
@@ -290,6 +302,7 @@ export type TaskStatusCreateInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   tasks?: Prisma.TaskCreateNestedManyWithoutTaskStatusInput
   project: Prisma.ProjectCreateNestedOneWithoutTaskStatusesInput
@@ -302,6 +315,7 @@ export type TaskStatusUncheckedCreateInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   projectId: string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutTaskStatusInput
@@ -314,6 +328,7 @@ export type TaskStatusUpdateInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   tasks?: Prisma.TaskUpdateManyWithoutTaskStatusNestedInput
   project?: Prisma.ProjectUpdateOneRequiredWithoutTaskStatusesNestedInput
@@ -326,6 +341,7 @@ export type TaskStatusUncheckedUpdateInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutTaskStatusNestedInput
@@ -338,6 +354,7 @@ export type TaskStatusCreateManyInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   projectId: string
 }
@@ -347,6 +364,7 @@ export type TaskStatusUpdateManyMutationInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -355,6 +373,7 @@ export type TaskStatusUncheckedUpdateManyInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -379,6 +398,7 @@ export type TaskStatusCountOrderByAggregateInput = {
   text?: Prisma.SortOrder
   color?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isDoneStatus?: Prisma.SortOrder
   statusOrder?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
 }
@@ -392,6 +412,7 @@ export type TaskStatusMaxOrderByAggregateInput = {
   text?: Prisma.SortOrder
   color?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isDoneStatus?: Prisma.SortOrder
   statusOrder?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
 }
@@ -401,6 +422,7 @@ export type TaskStatusMinOrderByAggregateInput = {
   text?: Prisma.SortOrder
   color?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
+  isDoneStatus?: Prisma.SortOrder
   statusOrder?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
 }
@@ -476,6 +498,10 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type NullableBoolFieldUpdateOperationsInput = {
+  set?: boolean | null
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -517,6 +543,7 @@ export type TaskStatusCreateWithoutProjectInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   tasks?: Prisma.TaskCreateNestedManyWithoutTaskStatusInput
   transitionsFrom?: Prisma.StatusTransitionCreateNestedManyWithoutFromTaskStatusInput
@@ -528,6 +555,7 @@ export type TaskStatusUncheckedCreateWithoutProjectInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutTaskStatusInput
   transitionsFrom?: Prisma.StatusTransitionUncheckedCreateNestedManyWithoutFromTaskStatusInput
@@ -568,6 +596,7 @@ export type TaskStatusScalarWhereInput = {
   text?: Prisma.StringFilter<"TaskStatus"> | string
   color?: Prisma.StringFilter<"TaskStatus"> | string
   isDefault?: Prisma.BoolFilter<"TaskStatus"> | boolean
+  isDoneStatus?: Prisma.BoolNullableFilter<"TaskStatus"> | boolean | null
   statusOrder?: Prisma.IntFilter<"TaskStatus"> | number
   projectId?: Prisma.StringFilter<"TaskStatus"> | string
 }
@@ -577,6 +606,7 @@ export type TaskStatusCreateWithoutTasksInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   project: Prisma.ProjectCreateNestedOneWithoutTaskStatusesInput
   transitionsFrom?: Prisma.StatusTransitionCreateNestedManyWithoutFromTaskStatusInput
@@ -588,6 +618,7 @@ export type TaskStatusUncheckedCreateWithoutTasksInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   projectId: string
   transitionsFrom?: Prisma.StatusTransitionUncheckedCreateNestedManyWithoutFromTaskStatusInput
@@ -615,6 +646,7 @@ export type TaskStatusUpdateWithoutTasksInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   project?: Prisma.ProjectUpdateOneRequiredWithoutTaskStatusesNestedInput
   transitionsFrom?: Prisma.StatusTransitionUpdateManyWithoutFromTaskStatusNestedInput
@@ -626,6 +658,7 @@ export type TaskStatusUncheckedUpdateWithoutTasksInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
   transitionsFrom?: Prisma.StatusTransitionUncheckedUpdateManyWithoutFromTaskStatusNestedInput
@@ -637,6 +670,7 @@ export type TaskStatusCreateWithoutTransitionsFromInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   tasks?: Prisma.TaskCreateNestedManyWithoutTaskStatusInput
   project: Prisma.ProjectCreateNestedOneWithoutTaskStatusesInput
@@ -648,6 +682,7 @@ export type TaskStatusUncheckedCreateWithoutTransitionsFromInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   projectId: string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutTaskStatusInput
@@ -664,6 +699,7 @@ export type TaskStatusCreateWithoutTransitionsToInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   tasks?: Prisma.TaskCreateNestedManyWithoutTaskStatusInput
   project: Prisma.ProjectCreateNestedOneWithoutTaskStatusesInput
@@ -675,6 +711,7 @@ export type TaskStatusUncheckedCreateWithoutTransitionsToInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
   projectId: string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutTaskStatusInput
@@ -702,6 +739,7 @@ export type TaskStatusUpdateWithoutTransitionsFromInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   tasks?: Prisma.TaskUpdateManyWithoutTaskStatusNestedInput
   project?: Prisma.ProjectUpdateOneRequiredWithoutTaskStatusesNestedInput
@@ -713,6 +751,7 @@ export type TaskStatusUncheckedUpdateWithoutTransitionsFromInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutTaskStatusNestedInput
@@ -735,6 +774,7 @@ export type TaskStatusUpdateWithoutTransitionsToInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   tasks?: Prisma.TaskUpdateManyWithoutTaskStatusNestedInput
   project?: Prisma.ProjectUpdateOneRequiredWithoutTaskStatusesNestedInput
@@ -746,6 +786,7 @@ export type TaskStatusUncheckedUpdateWithoutTransitionsToInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutTaskStatusNestedInput
@@ -757,6 +798,7 @@ export type TaskStatusCreateManyProjectInput = {
   text: string
   color: string
   isDefault?: boolean
+  isDoneStatus?: boolean | null
   statusOrder?: number
 }
 
@@ -765,6 +807,7 @@ export type TaskStatusUpdateWithoutProjectInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   tasks?: Prisma.TaskUpdateManyWithoutTaskStatusNestedInput
   transitionsFrom?: Prisma.StatusTransitionUpdateManyWithoutFromTaskStatusNestedInput
@@ -776,6 +819,7 @@ export type TaskStatusUncheckedUpdateWithoutProjectInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutTaskStatusNestedInput
   transitionsFrom?: Prisma.StatusTransitionUncheckedUpdateManyWithoutFromTaskStatusNestedInput
@@ -787,6 +831,7 @@ export type TaskStatusUncheckedUpdateManyWithoutProjectInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDoneStatus?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   statusOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -844,6 +889,7 @@ export type TaskStatusSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   text?: boolean
   color?: boolean
   isDefault?: boolean
+  isDoneStatus?: boolean
   statusOrder?: boolean
   projectId?: boolean
   tasks?: boolean | Prisma.TaskStatus$tasksArgs<ExtArgs>
@@ -858,6 +904,7 @@ export type TaskStatusSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   text?: boolean
   color?: boolean
   isDefault?: boolean
+  isDoneStatus?: boolean
   statusOrder?: boolean
   projectId?: boolean
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
@@ -868,6 +915,7 @@ export type TaskStatusSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   text?: boolean
   color?: boolean
   isDefault?: boolean
+  isDoneStatus?: boolean
   statusOrder?: boolean
   projectId?: boolean
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
@@ -878,11 +926,12 @@ export type TaskStatusSelectScalar = {
   text?: boolean
   color?: boolean
   isDefault?: boolean
+  isDoneStatus?: boolean
   statusOrder?: boolean
   projectId?: boolean
 }
 
-export type TaskStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "text" | "color" | "isDefault" | "statusOrder" | "projectId", ExtArgs["result"]["taskStatus"]>
+export type TaskStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "text" | "color" | "isDefault" | "isDoneStatus" | "statusOrder" | "projectId", ExtArgs["result"]["taskStatus"]>
 export type TaskStatusInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tasks?: boolean | Prisma.TaskStatus$tasksArgs<ExtArgs>
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
@@ -910,6 +959,7 @@ export type $TaskStatusPayload<ExtArgs extends runtime.Types.Extensions.Internal
     text: string
     color: string
     isDefault: boolean
+    isDoneStatus: boolean | null
     statusOrder: number
     projectId: string
   }, ExtArgs["result"]["taskStatus"]>
@@ -1343,6 +1393,7 @@ export interface TaskStatusFieldRefs {
   readonly text: Prisma.FieldRef<"TaskStatus", 'String'>
   readonly color: Prisma.FieldRef<"TaskStatus", 'String'>
   readonly isDefault: Prisma.FieldRef<"TaskStatus", 'Boolean'>
+  readonly isDoneStatus: Prisma.FieldRef<"TaskStatus", 'Boolean'>
   readonly statusOrder: Prisma.FieldRef<"TaskStatus", 'Int'>
   readonly projectId: Prisma.FieldRef<"TaskStatus", 'String'>
 }

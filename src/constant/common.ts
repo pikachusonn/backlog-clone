@@ -30,5 +30,6 @@ export const DefaultTaskStatusText = [
   {
     text: 'Done',
     color: '#47c678',
+    isDoneStatus: true,
   },
 ];

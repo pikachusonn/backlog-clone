@@ -3,9 +3,17 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { ConfigModule } from '@nestjs/config';
 import { ProjectModule } from './Project/project.module.js';
+import { AuthModule } from './Auth/auth.module.js';
 
 @Module({
-  imports: [ConfigModule.forRoot(), ProjectModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    ProjectModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
