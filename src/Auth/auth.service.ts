@@ -5,6 +5,8 @@ import { ACCESS_JWT, REFRESH_JWT } from '../utils/jwt.providers.js';
 import { LoginRequestDto } from './dto/loginRequest.dto.js';
 import { AccountService } from '../Account/account.service.js';
 import * as bcrypt from 'bcrypt';
+import { plainToInstance } from 'class-transformer';
+import { CommonAccountDto } from '../Account/dto/commonAccount.dto.js';
 @Injectable()
 export class AuthService {
   constructor(
@@ -12,7 +14,7 @@ export class AuthService {
     private readonly accountService: AccountService,
     @Inject(ACCESS_JWT) private readonly accessJwt: JwtService,
     @Inject(REFRESH_JWT) private readonly refreshJwt: JwtService,
-  ) {}
+  ) { }
 
   async login(loginRequestDto: LoginRequestDto) {
     const { email, password } = loginRequestDto;
@@ -33,11 +35,13 @@ export class AuthService {
 
     const accessToken = await this.accessJwt.signAsync(payload);
     const refreshToken = await this.refreshJwt.signAsync(payload);
-
+    const convertedAccount = plainToInstance(CommonAccountDto, account, {
+      excludeExtraneousValues: true,
+    });
     return {
       accessToken,
       refreshToken,
-      account,
+      account: convertedAccount,
     };
   }
 }

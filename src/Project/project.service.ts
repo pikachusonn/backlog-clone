@@ -40,7 +40,7 @@ export class ProjectService {
   findProjectById = async (
     projectId: string,
     accountId: string,
-  ): Promise<ProjectDetailDto | null> => {
+  ): Promise<ProjectDetailDto> => {
     const result = await this.projectRepository.findProjectById(projectId);
     if (!result) {
       throw new NotFoundException({
@@ -68,6 +68,7 @@ export class ProjectService {
 
   createProject = async (
     project: CreateProjectDto,
+    creatorId: string,
   ): Promise<ProjectDetailDto> => {
     const result = await this.projectRepository.createProject({
       name: project.name,
@@ -75,7 +76,7 @@ export class ProjectService {
       coverImage: project.coverImage || null,
       createdByAccount: {
         connect: {
-          id: 'ed40f370-be08-494d-8bce-ba4a56360b83',
+          id: creatorId,
         },
       },
     });

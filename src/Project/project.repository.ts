@@ -47,6 +47,7 @@ export class ProjectRepository {
       },
       include: {
         createdByAccount: true,
+        taskStatuses: true,
         projectCollaborators: {
           include: {
             invitedAccount: true,

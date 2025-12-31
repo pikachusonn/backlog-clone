@@ -1,7 +1,9 @@
-import { ForbiddenException } from '@nestjs/common';
-import { ErrorKey } from '../constant/common.js';
+import { ForbiddenException, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { ErrorKey, ProjectRole } from '../constant/common.js';
 import { ProjectInviteStatus } from '../generated/prisma/enums.js';
 import { ProjectDetailDto } from '../Project/dto/projectDetail.dto.js';
+import { ProjectRepository } from 'src/Project/project.repository.js';
+import { plainToInstance } from 'class-transformer';
 
 export const checkProjectAccessibility = (
   project: ProjectDetailDto,
@@ -33,6 +35,46 @@ export const checkProjectAccessibility = (
       message:
         'You have been invited to this project. Do you accept the invitation?',
       errorKey: ErrorKey.PENDING_PROJECT_INVITE,
+    });
+  }
+};
+
+export const getProject = async (
+  projectId: string,
+  accountId: string,
+  projectRepository: ProjectRepository,
+): Promise<ProjectDetailDto> => {
+  try {
+    const result = await projectRepository.findProjectById(projectId);
+    console.log(result);
+    if (!result) {
+      throw new NotFoundException({
+        message: 'Project not found',
+        errorKey: ErrorKey.NOT_FOUND,
+      });
+    }
+
+    const convertedResult = plainToInstance(
+      ProjectDetailDto,
+      {
+        ...result,
+        projectRole:
+          result.createdBy === accountId
+            ? ProjectRole.OWNER
+            : ProjectRole.COLLABORATOR,
+      },
+      {
+        excludeExtraneousValues: true,
+      },
+    );
+
+    checkProjectAccessibility(convertedResult, accountId);
+    return convertedResult;
+  } catch (error) {
+    console.log(error);
+    throw new InternalServerErrorException({
+      message: 'Internal server error',
+      errorKey: ErrorKey.INTERNAL_SERVER_ERROR,
     });
   }
 };

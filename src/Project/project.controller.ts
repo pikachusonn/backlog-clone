@@ -1,7 +1,9 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { ProjectService } from './project.service.js';
 import { CreateProjectDto } from './dto/createProject.dto.js';
-
+import { JwtAuthGuard } from '../guard/JwtAuth.guard.js';
+import CurrentUser from '../decorators/current-user.decorator.js';
 @Controller('projects')
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
@@ -11,21 +13,24 @@ export class ProjectController {
     return await this.projectService.findAll();
   }
 
-  @Get('participated/:accountId')
-  async findParticipatedProjects(@Param('accountId') accountId: string) {
-    return await this.projectService.findParticipatedProjects(accountId);
+  @Get('participated')
+  @UseGuards(JwtAuthGuard)
+  async findParticipatedProjects(@CurrentUser() user) {
+    return await this.projectService.findParticipatedProjects(user.userId);
   }
 
   @Get('detail')
+  @UseGuards(JwtAuthGuard)
   async findProjectById(
     @Query('projectId') projectId: string,
-    @Query('accountId') accountId: string,
+    @CurrentUser() user,
   ) {
-    return await this.projectService.findProjectById(projectId, accountId);
+    return await this.projectService.findProjectById(projectId, user.userId);
   }
 
   @Post()
-  createProject(@Body() project: CreateProjectDto) {
-    return this.projectService.createProject(project);
+  @UseGuards(JwtAuthGuard)
+  createProject(@Body() project: CreateProjectDto, @CurrentUser() user) {
+    return this.projectService.createProject(project, user.userId);
   }
 }

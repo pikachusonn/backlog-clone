@@ -4,6 +4,7 @@ import { AppService } from './app.service.js';
 import { ConfigModule } from '@nestjs/config';
 import { ProjectModule } from './Project/project.module.js';
 import { AuthModule } from './Auth/auth.module.js';
+import { TaskModule } from './Tasks/task.module.js';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { AuthModule } from './Auth/auth.module.js';
       envFilePath: '.env',
     }),
     ProjectModule,
+    TaskModule,
     AuthModule,
   ],
   controllers: [AppController],

@@ -59,7 +59,6 @@ model Task {
     updatedAt    DateTime?            @updatedAt
     projectId    String
     project      Project?             @relation(fields: [projectId], references: [id])
-    status       String?
     startDate    DateTime?
     dueDate      DateTime?
     assigneeId   String?

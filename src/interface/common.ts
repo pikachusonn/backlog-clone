@@ -6,3 +6,8 @@ export interface ApiErrorResponse {
   errorKey?: ErrorKey;
   timestamp: string;
 }
+
+export interface JwtPayload {
+  sub: string;
+  email: string;
+}
