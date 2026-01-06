@@ -14,6 +14,11 @@ enum ProjectInviteStatus {
     INACTIVE //MANUALLY DEACTIVATED
 }
 
+enum ProjectRole {
+    COLLABORATOR
+    OWNER
+}
+
 model Account {
     id                   String                @id @default(uuid())
     email                String                @unique
@@ -41,10 +46,11 @@ model Project {
 model ProjectCollaborator {
     id             String              @id @default(uuid())
     status         ProjectInviteStatus @default(PENDING_INVITE)
+    projectRole    ProjectRole         @default(COLLABORATOR)
     accountId      String
     projectId      String
     inviteDueDate  DateTime?
-    invitedAccount Account             @relation(fields: [accountId], references: [id])
+    targetAccount Account             @relation(fields: [accountId], references: [id])
     targetProject  Project             @relation(fields: [projectId], references: [id])
     createdAt      DateTime            @default(now())
     updatedAt      DateTime?           @updatedAt

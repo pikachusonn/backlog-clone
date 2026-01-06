@@ -238,7 +238,7 @@ export type AccountCreateInput = {
   createdAt?: Date | string
   avatar?: string | null
   projects?: Prisma.ProjectCreateNestedManyWithoutCreatedByAccountInput
-  projectCollaborators?: Prisma.ProjectCollaboratorCreateNestedManyWithoutInvitedAccountInput
+  projectCollaborators?: Prisma.ProjectCollaboratorCreateNestedManyWithoutTargetAccountInput
 }
 
 export type AccountUncheckedCreateInput = {
@@ -248,7 +248,7 @@ export type AccountUncheckedCreateInput = {
   createdAt?: Date | string
   avatar?: string | null
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByAccountInput
-  projectCollaborators?: Prisma.ProjectCollaboratorUncheckedCreateNestedManyWithoutInvitedAccountInput
+  projectCollaborators?: Prisma.ProjectCollaboratorUncheckedCreateNestedManyWithoutTargetAccountInput
 }
 
 export type AccountUpdateInput = {
@@ -258,7 +258,7 @@ export type AccountUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projects?: Prisma.ProjectUpdateManyWithoutCreatedByAccountNestedInput
-  projectCollaborators?: Prisma.ProjectCollaboratorUpdateManyWithoutInvitedAccountNestedInput
+  projectCollaborators?: Prisma.ProjectCollaboratorUpdateManyWithoutTargetAccountNestedInput
 }
 
 export type AccountUncheckedUpdateInput = {
@@ -268,7 +268,7 @@ export type AccountUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByAccountNestedInput
-  projectCollaborators?: Prisma.ProjectCollaboratorUncheckedUpdateManyWithoutInvitedAccountNestedInput
+  projectCollaborators?: Prisma.ProjectCollaboratorUncheckedUpdateManyWithoutTargetAccountNestedInput
 }
 
 export type AccountCreateManyInput = {
@@ -377,7 +377,7 @@ export type AccountCreateWithoutProjectsInput = {
   password: string
   createdAt?: Date | string
   avatar?: string | null
-  projectCollaborators?: Prisma.ProjectCollaboratorCreateNestedManyWithoutInvitedAccountInput
+  projectCollaborators?: Prisma.ProjectCollaboratorCreateNestedManyWithoutTargetAccountInput
 }
 
 export type AccountUncheckedCreateWithoutProjectsInput = {
@@ -386,7 +386,7 @@ export type AccountUncheckedCreateWithoutProjectsInput = {
   password: string
   createdAt?: Date | string
   avatar?: string | null
-  projectCollaborators?: Prisma.ProjectCollaboratorUncheckedCreateNestedManyWithoutInvitedAccountInput
+  projectCollaborators?: Prisma.ProjectCollaboratorUncheckedCreateNestedManyWithoutTargetAccountInput
 }
 
 export type AccountCreateOrConnectWithoutProjectsInput = {
@@ -411,7 +411,7 @@ export type AccountUpdateWithoutProjectsInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  projectCollaborators?: Prisma.ProjectCollaboratorUpdateManyWithoutInvitedAccountNestedInput
+  projectCollaborators?: Prisma.ProjectCollaboratorUpdateManyWithoutTargetAccountNestedInput
 }
 
 export type AccountUncheckedUpdateWithoutProjectsInput = {
@@ -420,7 +420,7 @@ export type AccountUncheckedUpdateWithoutProjectsInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  projectCollaborators?: Prisma.ProjectCollaboratorUncheckedUpdateManyWithoutInvitedAccountNestedInput
+  projectCollaborators?: Prisma.ProjectCollaboratorUncheckedUpdateManyWithoutTargetAccountNestedInput
 }
 
 export type AccountCreateWithoutProjectCollaboratorsInput = {

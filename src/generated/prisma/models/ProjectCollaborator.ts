@@ -27,6 +27,7 @@ export type AggregateProjectCollaborator = {
 export type ProjectCollaboratorMinAggregateOutputType = {
   id: string | null
   status: $Enums.ProjectInviteStatus | null
+  projectRole: $Enums.ProjectRole | null
   accountId: string | null
   projectId: string | null
   inviteDueDate: Date | null
@@ -37,6 +38,7 @@ export type ProjectCollaboratorMinAggregateOutputType = {
 export type ProjectCollaboratorMaxAggregateOutputType = {
   id: string | null
   status: $Enums.ProjectInviteStatus | null
+  projectRole: $Enums.ProjectRole | null
   accountId: string | null
   projectId: string | null
   inviteDueDate: Date | null
@@ -47,6 +49,7 @@ export type ProjectCollaboratorMaxAggregateOutputType = {
 export type ProjectCollaboratorCountAggregateOutputType = {
   id: number
   status: number
+  projectRole: number
   accountId: number
   projectId: number
   inviteDueDate: number
@@ -59,6 +62,7 @@ export type ProjectCollaboratorCountAggregateOutputType = {
 export type ProjectCollaboratorMinAggregateInputType = {
   id?: true
   status?: true
+  projectRole?: true
   accountId?: true
   projectId?: true
   inviteDueDate?: true
@@ -69,6 +73,7 @@ export type ProjectCollaboratorMinAggregateInputType = {
 export type ProjectCollaboratorMaxAggregateInputType = {
   id?: true
   status?: true
+  projectRole?: true
   accountId?: true
   projectId?: true
   inviteDueDate?: true
@@ -79,6 +84,7 @@ export type ProjectCollaboratorMaxAggregateInputType = {
 export type ProjectCollaboratorCountAggregateInputType = {
   id?: true
   status?: true
+  projectRole?: true
   accountId?: true
   projectId?: true
   inviteDueDate?: true
@@ -162,6 +168,7 @@ export type ProjectCollaboratorGroupByArgs<ExtArgs extends runtime.Types.Extensi
 export type ProjectCollaboratorGroupByOutputType = {
   id: string
   status: $Enums.ProjectInviteStatus
+  projectRole: $Enums.ProjectRole
   accountId: string
   projectId: string
   inviteDueDate: Date | null
@@ -193,12 +200,13 @@ export type ProjectCollaboratorWhereInput = {
   NOT?: Prisma.ProjectCollaboratorWhereInput | Prisma.ProjectCollaboratorWhereInput[]
   id?: Prisma.StringFilter<"ProjectCollaborator"> | string
   status?: Prisma.EnumProjectInviteStatusFilter<"ProjectCollaborator"> | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFilter<"ProjectCollaborator"> | $Enums.ProjectRole
   accountId?: Prisma.StringFilter<"ProjectCollaborator"> | string
   projectId?: Prisma.StringFilter<"ProjectCollaborator"> | string
   inviteDueDate?: Prisma.DateTimeNullableFilter<"ProjectCollaborator"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ProjectCollaborator"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"ProjectCollaborator"> | Date | string | null
-  invitedAccount?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
+  targetAccount?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   targetProject?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   tasks?: Prisma.TaskListRelationFilter
 }
@@ -206,12 +214,13 @@ export type ProjectCollaboratorWhereInput = {
 export type ProjectCollaboratorOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  projectRole?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   inviteDueDate?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  invitedAccount?: Prisma.AccountOrderByWithRelationInput
+  targetAccount?: Prisma.AccountOrderByWithRelationInput
   targetProject?: Prisma.ProjectOrderByWithRelationInput
   tasks?: Prisma.TaskOrderByRelationAggregateInput
 }
@@ -222,12 +231,13 @@ export type ProjectCollaboratorWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ProjectCollaboratorWhereInput[]
   NOT?: Prisma.ProjectCollaboratorWhereInput | Prisma.ProjectCollaboratorWhereInput[]
   status?: Prisma.EnumProjectInviteStatusFilter<"ProjectCollaborator"> | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFilter<"ProjectCollaborator"> | $Enums.ProjectRole
   accountId?: Prisma.StringFilter<"ProjectCollaborator"> | string
   projectId?: Prisma.StringFilter<"ProjectCollaborator"> | string
   inviteDueDate?: Prisma.DateTimeNullableFilter<"ProjectCollaborator"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ProjectCollaborator"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"ProjectCollaborator"> | Date | string | null
-  invitedAccount?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
+  targetAccount?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   targetProject?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   tasks?: Prisma.TaskListRelationFilter
 }, "id">
@@ -235,6 +245,7 @@ export type ProjectCollaboratorWhereUniqueInput = Prisma.AtLeast<{
 export type ProjectCollaboratorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  projectRole?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   inviteDueDate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -251,6 +262,7 @@ export type ProjectCollaboratorScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProjectCollaboratorScalarWhereWithAggregatesInput | Prisma.ProjectCollaboratorScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ProjectCollaborator"> | string
   status?: Prisma.EnumProjectInviteStatusWithAggregatesFilter<"ProjectCollaborator"> | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleWithAggregatesFilter<"ProjectCollaborator"> | $Enums.ProjectRole
   accountId?: Prisma.StringWithAggregatesFilter<"ProjectCollaborator"> | string
   projectId?: Prisma.StringWithAggregatesFilter<"ProjectCollaborator"> | string
   inviteDueDate?: Prisma.DateTimeNullableWithAggregatesFilter<"ProjectCollaborator"> | Date | string | null
@@ -261,10 +273,11 @@ export type ProjectCollaboratorScalarWhereWithAggregatesInput = {
 export type ProjectCollaboratorCreateInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   inviteDueDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string | null
-  invitedAccount: Prisma.AccountCreateNestedOneWithoutProjectCollaboratorsInput
+  targetAccount: Prisma.AccountCreateNestedOneWithoutProjectCollaboratorsInput
   targetProject: Prisma.ProjectCreateNestedOneWithoutProjectCollaboratorsInput
   tasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
 }
@@ -272,6 +285,7 @@ export type ProjectCollaboratorCreateInput = {
 export type ProjectCollaboratorUncheckedCreateInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   accountId: string
   projectId: string
   inviteDueDate?: Date | string | null
@@ -283,10 +297,11 @@ export type ProjectCollaboratorUncheckedCreateInput = {
 export type ProjectCollaboratorUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  invitedAccount?: Prisma.AccountUpdateOneRequiredWithoutProjectCollaboratorsNestedInput
+  targetAccount?: Prisma.AccountUpdateOneRequiredWithoutProjectCollaboratorsNestedInput
   targetProject?: Prisma.ProjectUpdateOneRequiredWithoutProjectCollaboratorsNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
 }
@@ -294,6 +309,7 @@ export type ProjectCollaboratorUpdateInput = {
 export type ProjectCollaboratorUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -305,6 +321,7 @@ export type ProjectCollaboratorUncheckedUpdateInput = {
 export type ProjectCollaboratorCreateManyInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   accountId: string
   projectId: string
   inviteDueDate?: Date | string | null
@@ -315,6 +332,7 @@ export type ProjectCollaboratorCreateManyInput = {
 export type ProjectCollaboratorUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -323,6 +341,7 @@ export type ProjectCollaboratorUpdateManyMutationInput = {
 export type ProjectCollaboratorUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -343,6 +362,7 @@ export type ProjectCollaboratorOrderByRelationAggregateInput = {
 export type ProjectCollaboratorCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  projectRole?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   inviteDueDate?: Prisma.SortOrder
@@ -353,6 +373,7 @@ export type ProjectCollaboratorCountOrderByAggregateInput = {
 export type ProjectCollaboratorMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  projectRole?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   inviteDueDate?: Prisma.SortOrder
@@ -363,6 +384,7 @@ export type ProjectCollaboratorMaxOrderByAggregateInput = {
 export type ProjectCollaboratorMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  projectRole?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   inviteDueDate?: Prisma.SortOrder
@@ -375,45 +397,45 @@ export type ProjectCollaboratorNullableScalarRelationFilter = {
   isNot?: Prisma.ProjectCollaboratorWhereInput | null
 }
 
-export type ProjectCollaboratorCreateNestedManyWithoutInvitedAccountInput = {
-  create?: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput> | Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput[] | Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput[]
-  connectOrCreate?: Prisma.ProjectCollaboratorCreateOrConnectWithoutInvitedAccountInput | Prisma.ProjectCollaboratorCreateOrConnectWithoutInvitedAccountInput[]
-  createMany?: Prisma.ProjectCollaboratorCreateManyInvitedAccountInputEnvelope
+export type ProjectCollaboratorCreateNestedManyWithoutTargetAccountInput = {
+  create?: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput> | Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput[] | Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput[]
+  connectOrCreate?: Prisma.ProjectCollaboratorCreateOrConnectWithoutTargetAccountInput | Prisma.ProjectCollaboratorCreateOrConnectWithoutTargetAccountInput[]
+  createMany?: Prisma.ProjectCollaboratorCreateManyTargetAccountInputEnvelope
   connect?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
 }
 
-export type ProjectCollaboratorUncheckedCreateNestedManyWithoutInvitedAccountInput = {
-  create?: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput> | Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput[] | Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput[]
-  connectOrCreate?: Prisma.ProjectCollaboratorCreateOrConnectWithoutInvitedAccountInput | Prisma.ProjectCollaboratorCreateOrConnectWithoutInvitedAccountInput[]
-  createMany?: Prisma.ProjectCollaboratorCreateManyInvitedAccountInputEnvelope
+export type ProjectCollaboratorUncheckedCreateNestedManyWithoutTargetAccountInput = {
+  create?: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput> | Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput[] | Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput[]
+  connectOrCreate?: Prisma.ProjectCollaboratorCreateOrConnectWithoutTargetAccountInput | Prisma.ProjectCollaboratorCreateOrConnectWithoutTargetAccountInput[]
+  createMany?: Prisma.ProjectCollaboratorCreateManyTargetAccountInputEnvelope
   connect?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
 }
 
-export type ProjectCollaboratorUpdateManyWithoutInvitedAccountNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput> | Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput[] | Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput[]
-  connectOrCreate?: Prisma.ProjectCollaboratorCreateOrConnectWithoutInvitedAccountInput | Prisma.ProjectCollaboratorCreateOrConnectWithoutInvitedAccountInput[]
-  upsert?: Prisma.ProjectCollaboratorUpsertWithWhereUniqueWithoutInvitedAccountInput | Prisma.ProjectCollaboratorUpsertWithWhereUniqueWithoutInvitedAccountInput[]
-  createMany?: Prisma.ProjectCollaboratorCreateManyInvitedAccountInputEnvelope
+export type ProjectCollaboratorUpdateManyWithoutTargetAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput> | Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput[] | Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput[]
+  connectOrCreate?: Prisma.ProjectCollaboratorCreateOrConnectWithoutTargetAccountInput | Prisma.ProjectCollaboratorCreateOrConnectWithoutTargetAccountInput[]
+  upsert?: Prisma.ProjectCollaboratorUpsertWithWhereUniqueWithoutTargetAccountInput | Prisma.ProjectCollaboratorUpsertWithWhereUniqueWithoutTargetAccountInput[]
+  createMany?: Prisma.ProjectCollaboratorCreateManyTargetAccountInputEnvelope
   set?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
   disconnect?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
   delete?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
   connect?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
-  update?: Prisma.ProjectCollaboratorUpdateWithWhereUniqueWithoutInvitedAccountInput | Prisma.ProjectCollaboratorUpdateWithWhereUniqueWithoutInvitedAccountInput[]
-  updateMany?: Prisma.ProjectCollaboratorUpdateManyWithWhereWithoutInvitedAccountInput | Prisma.ProjectCollaboratorUpdateManyWithWhereWithoutInvitedAccountInput[]
+  update?: Prisma.ProjectCollaboratorUpdateWithWhereUniqueWithoutTargetAccountInput | Prisma.ProjectCollaboratorUpdateWithWhereUniqueWithoutTargetAccountInput[]
+  updateMany?: Prisma.ProjectCollaboratorUpdateManyWithWhereWithoutTargetAccountInput | Prisma.ProjectCollaboratorUpdateManyWithWhereWithoutTargetAccountInput[]
   deleteMany?: Prisma.ProjectCollaboratorScalarWhereInput | Prisma.ProjectCollaboratorScalarWhereInput[]
 }
 
-export type ProjectCollaboratorUncheckedUpdateManyWithoutInvitedAccountNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput> | Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput[] | Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput[]
-  connectOrCreate?: Prisma.ProjectCollaboratorCreateOrConnectWithoutInvitedAccountInput | Prisma.ProjectCollaboratorCreateOrConnectWithoutInvitedAccountInput[]
-  upsert?: Prisma.ProjectCollaboratorUpsertWithWhereUniqueWithoutInvitedAccountInput | Prisma.ProjectCollaboratorUpsertWithWhereUniqueWithoutInvitedAccountInput[]
-  createMany?: Prisma.ProjectCollaboratorCreateManyInvitedAccountInputEnvelope
+export type ProjectCollaboratorUncheckedUpdateManyWithoutTargetAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput> | Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput[] | Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput[]
+  connectOrCreate?: Prisma.ProjectCollaboratorCreateOrConnectWithoutTargetAccountInput | Prisma.ProjectCollaboratorCreateOrConnectWithoutTargetAccountInput[]
+  upsert?: Prisma.ProjectCollaboratorUpsertWithWhereUniqueWithoutTargetAccountInput | Prisma.ProjectCollaboratorUpsertWithWhereUniqueWithoutTargetAccountInput[]
+  createMany?: Prisma.ProjectCollaboratorCreateManyTargetAccountInputEnvelope
   set?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
   disconnect?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
   delete?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
   connect?: Prisma.ProjectCollaboratorWhereUniqueInput | Prisma.ProjectCollaboratorWhereUniqueInput[]
-  update?: Prisma.ProjectCollaboratorUpdateWithWhereUniqueWithoutInvitedAccountInput | Prisma.ProjectCollaboratorUpdateWithWhereUniqueWithoutInvitedAccountInput[]
-  updateMany?: Prisma.ProjectCollaboratorUpdateManyWithWhereWithoutInvitedAccountInput | Prisma.ProjectCollaboratorUpdateManyWithWhereWithoutInvitedAccountInput[]
+  update?: Prisma.ProjectCollaboratorUpdateWithWhereUniqueWithoutTargetAccountInput | Prisma.ProjectCollaboratorUpdateWithWhereUniqueWithoutTargetAccountInput[]
+  updateMany?: Prisma.ProjectCollaboratorUpdateManyWithWhereWithoutTargetAccountInput | Prisma.ProjectCollaboratorUpdateManyWithWhereWithoutTargetAccountInput[]
   deleteMany?: Prisma.ProjectCollaboratorScalarWhereInput | Prisma.ProjectCollaboratorScalarWhereInput[]
 }
 
@@ -463,6 +485,10 @@ export type EnumProjectInviteStatusFieldUpdateOperationsInput = {
   set?: $Enums.ProjectInviteStatus
 }
 
+export type EnumProjectRoleFieldUpdateOperationsInput = {
+  set?: $Enums.ProjectRole
+}
+
 export type ProjectCollaboratorCreateNestedOneWithoutTasksInput = {
   create?: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutTasksInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutTasksInput>
   connectOrCreate?: Prisma.ProjectCollaboratorCreateOrConnectWithoutTasksInput
@@ -479,9 +505,10 @@ export type ProjectCollaboratorUpdateOneWithoutTasksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectCollaboratorUpdateToOneWithWhereWithoutTasksInput, Prisma.ProjectCollaboratorUpdateWithoutTasksInput>, Prisma.ProjectCollaboratorUncheckedUpdateWithoutTasksInput>
 }
 
-export type ProjectCollaboratorCreateWithoutInvitedAccountInput = {
+export type ProjectCollaboratorCreateWithoutTargetAccountInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   inviteDueDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string | null
@@ -489,9 +516,10 @@ export type ProjectCollaboratorCreateWithoutInvitedAccountInput = {
   tasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
 }
 
-export type ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput = {
+export type ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   projectId: string
   inviteDueDate?: Date | string | null
   createdAt?: Date | string
@@ -499,30 +527,30 @@ export type ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput = {
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
-export type ProjectCollaboratorCreateOrConnectWithoutInvitedAccountInput = {
+export type ProjectCollaboratorCreateOrConnectWithoutTargetAccountInput = {
   where: Prisma.ProjectCollaboratorWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput>
+  create: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput>
 }
 
-export type ProjectCollaboratorCreateManyInvitedAccountInputEnvelope = {
-  data: Prisma.ProjectCollaboratorCreateManyInvitedAccountInput | Prisma.ProjectCollaboratorCreateManyInvitedAccountInput[]
+export type ProjectCollaboratorCreateManyTargetAccountInputEnvelope = {
+  data: Prisma.ProjectCollaboratorCreateManyTargetAccountInput | Prisma.ProjectCollaboratorCreateManyTargetAccountInput[]
   skipDuplicates?: boolean
 }
 
-export type ProjectCollaboratorUpsertWithWhereUniqueWithoutInvitedAccountInput = {
+export type ProjectCollaboratorUpsertWithWhereUniqueWithoutTargetAccountInput = {
   where: Prisma.ProjectCollaboratorWhereUniqueInput
-  update: Prisma.XOR<Prisma.ProjectCollaboratorUpdateWithoutInvitedAccountInput, Prisma.ProjectCollaboratorUncheckedUpdateWithoutInvitedAccountInput>
-  create: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutInvitedAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutInvitedAccountInput>
+  update: Prisma.XOR<Prisma.ProjectCollaboratorUpdateWithoutTargetAccountInput, Prisma.ProjectCollaboratorUncheckedUpdateWithoutTargetAccountInput>
+  create: Prisma.XOR<Prisma.ProjectCollaboratorCreateWithoutTargetAccountInput, Prisma.ProjectCollaboratorUncheckedCreateWithoutTargetAccountInput>
 }
 
-export type ProjectCollaboratorUpdateWithWhereUniqueWithoutInvitedAccountInput = {
+export type ProjectCollaboratorUpdateWithWhereUniqueWithoutTargetAccountInput = {
   where: Prisma.ProjectCollaboratorWhereUniqueInput
-  data: Prisma.XOR<Prisma.ProjectCollaboratorUpdateWithoutInvitedAccountInput, Prisma.ProjectCollaboratorUncheckedUpdateWithoutInvitedAccountInput>
+  data: Prisma.XOR<Prisma.ProjectCollaboratorUpdateWithoutTargetAccountInput, Prisma.ProjectCollaboratorUncheckedUpdateWithoutTargetAccountInput>
 }
 
-export type ProjectCollaboratorUpdateManyWithWhereWithoutInvitedAccountInput = {
+export type ProjectCollaboratorUpdateManyWithWhereWithoutTargetAccountInput = {
   where: Prisma.ProjectCollaboratorScalarWhereInput
-  data: Prisma.XOR<Prisma.ProjectCollaboratorUpdateManyMutationInput, Prisma.ProjectCollaboratorUncheckedUpdateManyWithoutInvitedAccountInput>
+  data: Prisma.XOR<Prisma.ProjectCollaboratorUpdateManyMutationInput, Prisma.ProjectCollaboratorUncheckedUpdateManyWithoutTargetAccountInput>
 }
 
 export type ProjectCollaboratorScalarWhereInput = {
@@ -531,6 +559,7 @@ export type ProjectCollaboratorScalarWhereInput = {
   NOT?: Prisma.ProjectCollaboratorScalarWhereInput | Prisma.ProjectCollaboratorScalarWhereInput[]
   id?: Prisma.StringFilter<"ProjectCollaborator"> | string
   status?: Prisma.EnumProjectInviteStatusFilter<"ProjectCollaborator"> | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFilter<"ProjectCollaborator"> | $Enums.ProjectRole
   accountId?: Prisma.StringFilter<"ProjectCollaborator"> | string
   projectId?: Prisma.StringFilter<"ProjectCollaborator"> | string
   inviteDueDate?: Prisma.DateTimeNullableFilter<"ProjectCollaborator"> | Date | string | null
@@ -541,16 +570,18 @@ export type ProjectCollaboratorScalarWhereInput = {
 export type ProjectCollaboratorCreateWithoutTargetProjectInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   inviteDueDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string | null
-  invitedAccount: Prisma.AccountCreateNestedOneWithoutProjectCollaboratorsInput
+  targetAccount: Prisma.AccountCreateNestedOneWithoutProjectCollaboratorsInput
   tasks?: Prisma.TaskCreateNestedManyWithoutAssigneeInput
 }
 
 export type ProjectCollaboratorUncheckedCreateWithoutTargetProjectInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   accountId: string
   inviteDueDate?: Date | string | null
   createdAt?: Date | string
@@ -587,16 +618,18 @@ export type ProjectCollaboratorUpdateManyWithWhereWithoutTargetProjectInput = {
 export type ProjectCollaboratorCreateWithoutTasksInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   inviteDueDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string | null
-  invitedAccount: Prisma.AccountCreateNestedOneWithoutProjectCollaboratorsInput
+  targetAccount: Prisma.AccountCreateNestedOneWithoutProjectCollaboratorsInput
   targetProject: Prisma.ProjectCreateNestedOneWithoutProjectCollaboratorsInput
 }
 
 export type ProjectCollaboratorUncheckedCreateWithoutTasksInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   accountId: string
   projectId: string
   inviteDueDate?: Date | string | null
@@ -623,16 +656,18 @@ export type ProjectCollaboratorUpdateToOneWithWhereWithoutTasksInput = {
 export type ProjectCollaboratorUpdateWithoutTasksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  invitedAccount?: Prisma.AccountUpdateOneRequiredWithoutProjectCollaboratorsNestedInput
+  targetAccount?: Prisma.AccountUpdateOneRequiredWithoutProjectCollaboratorsNestedInput
   targetProject?: Prisma.ProjectUpdateOneRequiredWithoutProjectCollaboratorsNestedInput
 }
 
 export type ProjectCollaboratorUncheckedUpdateWithoutTasksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -640,18 +675,20 @@ export type ProjectCollaboratorUncheckedUpdateWithoutTasksInput = {
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type ProjectCollaboratorCreateManyInvitedAccountInput = {
+export type ProjectCollaboratorCreateManyTargetAccountInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   projectId: string
   inviteDueDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string | null
 }
 
-export type ProjectCollaboratorUpdateWithoutInvitedAccountInput = {
+export type ProjectCollaboratorUpdateWithoutTargetAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -659,9 +696,10 @@ export type ProjectCollaboratorUpdateWithoutInvitedAccountInput = {
   tasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
 }
 
-export type ProjectCollaboratorUncheckedUpdateWithoutInvitedAccountInput = {
+export type ProjectCollaboratorUncheckedUpdateWithoutTargetAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -669,9 +707,10 @@ export type ProjectCollaboratorUncheckedUpdateWithoutInvitedAccountInput = {
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
-export type ProjectCollaboratorUncheckedUpdateManyWithoutInvitedAccountInput = {
+export type ProjectCollaboratorUncheckedUpdateManyWithoutTargetAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -681,6 +720,7 @@ export type ProjectCollaboratorUncheckedUpdateManyWithoutInvitedAccountInput = {
 export type ProjectCollaboratorCreateManyTargetProjectInput = {
   id?: string
   status?: $Enums.ProjectInviteStatus
+  projectRole?: $Enums.ProjectRole
   accountId: string
   inviteDueDate?: Date | string | null
   createdAt?: Date | string
@@ -690,16 +730,18 @@ export type ProjectCollaboratorCreateManyTargetProjectInput = {
 export type ProjectCollaboratorUpdateWithoutTargetProjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  invitedAccount?: Prisma.AccountUpdateOneRequiredWithoutProjectCollaboratorsNestedInput
+  targetAccount?: Prisma.AccountUpdateOneRequiredWithoutProjectCollaboratorsNestedInput
   tasks?: Prisma.TaskUpdateManyWithoutAssigneeNestedInput
 }
 
 export type ProjectCollaboratorUncheckedUpdateWithoutTargetProjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -710,6 +752,7 @@ export type ProjectCollaboratorUncheckedUpdateWithoutTargetProjectInput = {
 export type ProjectCollaboratorUncheckedUpdateManyWithoutTargetProjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumProjectInviteStatusFieldUpdateOperationsInput | $Enums.ProjectInviteStatus
+  projectRole?: Prisma.EnumProjectRoleFieldUpdateOperationsInput | $Enums.ProjectRole
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   inviteDueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -750,12 +793,13 @@ export type ProjectCollaboratorCountOutputTypeCountTasksArgs<ExtArgs extends run
 export type ProjectCollaboratorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   status?: boolean
+  projectRole?: boolean
   accountId?: boolean
   projectId?: boolean
   inviteDueDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  invitedAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  targetAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   targetProject?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
   tasks?: boolean | Prisma.ProjectCollaborator$tasksArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCollaboratorCountOutputTypeDefaultArgs<ExtArgs>
@@ -764,30 +808,33 @@ export type ProjectCollaboratorSelect<ExtArgs extends runtime.Types.Extensions.I
 export type ProjectCollaboratorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   status?: boolean
+  projectRole?: boolean
   accountId?: boolean
   projectId?: boolean
   inviteDueDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  invitedAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  targetAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   targetProject?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["projectCollaborator"]>
 
 export type ProjectCollaboratorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   status?: boolean
+  projectRole?: boolean
   accountId?: boolean
   projectId?: boolean
   inviteDueDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  invitedAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  targetAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   targetProject?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["projectCollaborator"]>
 
 export type ProjectCollaboratorSelectScalar = {
   id?: boolean
   status?: boolean
+  projectRole?: boolean
   accountId?: boolean
   projectId?: boolean
   inviteDueDate?: boolean
@@ -795,32 +842,33 @@ export type ProjectCollaboratorSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProjectCollaboratorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "status" | "accountId" | "projectId" | "inviteDueDate" | "createdAt" | "updatedAt", ExtArgs["result"]["projectCollaborator"]>
+export type ProjectCollaboratorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "status" | "projectRole" | "accountId" | "projectId" | "inviteDueDate" | "createdAt" | "updatedAt", ExtArgs["result"]["projectCollaborator"]>
 export type ProjectCollaboratorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  invitedAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  targetAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   targetProject?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
   tasks?: boolean | Prisma.ProjectCollaborator$tasksArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCollaboratorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectCollaboratorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  invitedAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  targetAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   targetProject?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 export type ProjectCollaboratorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  invitedAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  targetAccount?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   targetProject?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 
 export type $ProjectCollaboratorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ProjectCollaborator"
   objects: {
-    invitedAccount: Prisma.$AccountPayload<ExtArgs>
+    targetAccount: Prisma.$AccountPayload<ExtArgs>
     targetProject: Prisma.$ProjectPayload<ExtArgs>
     tasks: Prisma.$TaskPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     status: $Enums.ProjectInviteStatus
+    projectRole: $Enums.ProjectRole
     accountId: string
     projectId: string
     inviteDueDate: Date | null
@@ -1220,7 +1268,7 @@ readonly fields: ProjectCollaboratorFieldRefs;
  */
 export interface Prisma__ProjectCollaboratorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  invitedAccount<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  targetAccount<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   targetProject<T extends Prisma.ProjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProjectDefaultArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tasks<T extends Prisma.ProjectCollaborator$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProjectCollaborator$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1254,6 +1302,7 @@ export interface Prisma__ProjectCollaboratorClient<T, Null = never, ExtArgs exte
 export interface ProjectCollaboratorFieldRefs {
   readonly id: Prisma.FieldRef<"ProjectCollaborator", 'String'>
   readonly status: Prisma.FieldRef<"ProjectCollaborator", 'ProjectInviteStatus'>
+  readonly projectRole: Prisma.FieldRef<"ProjectCollaborator", 'ProjectRole'>
   readonly accountId: Prisma.FieldRef<"ProjectCollaborator", 'String'>
   readonly projectId: Prisma.FieldRef<"ProjectCollaborator", 'String'>
   readonly inviteDueDate: Prisma.FieldRef<"ProjectCollaborator", 'DateTime'>

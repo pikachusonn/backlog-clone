@@ -919,6 +919,7 @@ export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeo
 export const ProjectCollaboratorScalarFieldEnum = {
   id: 'id',
   status: 'status',
+  projectRole: 'projectRole',
   accountId: 'accountId',
   projectId: 'projectId',
   inviteDueDate: 'inviteDueDate',
@@ -1038,6 +1039,20 @@ export type EnumProjectInviteStatusFieldRefInput<$PrismaModel> = FieldRefInputTy
  * Reference to a field of type 'ProjectInviteStatus[]'
  */
 export type ListEnumProjectInviteStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectInviteStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ProjectRole'
+ */
+export type EnumProjectRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectRole'>
+    
+
+
+/**
+ * Reference to a field of type 'ProjectRole[]'
+ */
+export type ListEnumProjectRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectRole[]'>
     
 
 

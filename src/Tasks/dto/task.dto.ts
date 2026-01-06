@@ -1,5 +1,5 @@
 import { Expose, Type } from 'class-transformer';
-import { CommonAccountDto } from '../../Account/dto/commonAccount.dto.js';
+import { ProjectCollaboratorDto } from '../../ProjectCollaborator/dto/projectCollaborator.dto.js';
 export class TaskDto {
   @Expose()
   id: string;
@@ -18,8 +18,8 @@ export class TaskDto {
   @Expose()
   dueDate: Date | null;
   @Expose()
-  @Type(() => CommonAccountDto)
-  assignee: CommonAccountDto | null;
+  @Type(() => ProjectCollaboratorDto)
+  assignee: ProjectCollaboratorDto | null;
   @Expose()
   taskStatusId: string | null;
 

@@ -17,3 +17,11 @@ export const ProjectInviteStatus = {
 } as const
 
 export type ProjectInviteStatus = (typeof ProjectInviteStatus)[keyof typeof ProjectInviteStatus]
+
+
+export const ProjectRole = {
+  COLLABORATOR: 'COLLABORATOR',
+  OWNER: 'OWNER'
+} as const
+
+export type ProjectRole = (typeof ProjectRole)[keyof typeof ProjectRole]

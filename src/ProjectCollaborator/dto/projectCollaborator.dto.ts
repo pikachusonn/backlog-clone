@@ -1,6 +1,9 @@
 import { Expose, Type } from 'class-transformer';
 import { CommonAccountDto } from '../../Account/dto/commonAccount.dto.js';
-import { ProjectInviteStatus } from '../../generated/prisma/enums.js';
+import {
+  ProjectInviteStatus,
+  ProjectRole,
+} from '../../generated/prisma/enums.js';
 
 export class ProjectCollaboratorDto {
   @Expose()
@@ -9,13 +12,16 @@ export class ProjectCollaboratorDto {
   status: ProjectInviteStatus;
   @Expose()
   @Type(() => CommonAccountDto)
-  invitedAccount: CommonAccountDto;
+  targetAccount: CommonAccountDto;
   @Expose()
   inviteDueDate: Date | null;
   @Expose()
   createdAt: Date;
   @Expose()
   updatedAt: Date | null;
+  @Expose()
+  projectRole: ProjectRole;
+
   constructor(partial: Partial<ProjectCollaboratorDto>) {
     Object.assign(this, partial);
   }

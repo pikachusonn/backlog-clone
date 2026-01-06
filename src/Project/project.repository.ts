@@ -50,7 +50,7 @@ export class ProjectRepository {
         taskStatuses: true,
         projectCollaborators: {
           include: {
-            invitedAccount: true,
+            targetAccount: true,
           },
         },
       },

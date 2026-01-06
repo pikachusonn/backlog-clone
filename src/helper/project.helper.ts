@@ -1,4 +1,8 @@
-import { ForbiddenException, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { ErrorKey, ProjectRole } from '../constant/common.js';
 import { ProjectInviteStatus } from '../generated/prisma/enums.js';
 import { ProjectDetailDto } from '../Project/dto/projectDetail.dto.js';
@@ -10,7 +14,7 @@ export const checkProjectAccessibility = (
   accountId: string,
 ): void => {
   const projectCollaborator = project.projectCollaborators?.find(
-    (pc) => pc.invitedAccount.id === accountId,
+    (pc) => pc.targetAccount.id === accountId,
   );
 
   const isCreator = project.createdByAccount?.id === accountId;
@@ -46,7 +50,6 @@ export const getProject = async (
 ): Promise<ProjectDetailDto> => {
   try {
     const result = await projectRepository.findProjectById(projectId);
-    console.log(result);
     if (!result) {
       throw new NotFoundException({
         message: 'Project not found',
@@ -71,10 +74,10 @@ export const getProject = async (
     checkProjectAccessibility(convertedResult, accountId);
     return convertedResult;
   } catch (error) {
-    console.log(error);
     throw new InternalServerErrorException({
       message: 'Internal server error',
       errorKey: ErrorKey.INTERNAL_SERVER_ERROR,
+      details: error.message,
     });
   }
 };
