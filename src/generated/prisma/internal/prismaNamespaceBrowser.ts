@@ -55,6 +55,7 @@ export const ModelName = {
   Project: 'Project',
   ProjectCollaborator: 'ProjectCollaborator',
   Task: 'Task',
+  Attachment: 'Attachment',
   TaskStatus: 'TaskStatus',
   StatusTransition: 'StatusTransition'
 } as const
@@ -129,6 +130,18 @@ export const TaskScalarFieldEnum = {
 export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
 
 
+export const AttachmentScalarFieldEnum = {
+  id: 'id',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  taskId: 'taskId',
+  createdAt: 'createdAt',
+  fileType: 'fileType'
+} as const
+
+export type AttachmentScalarFieldEnum = (typeof AttachmentScalarFieldEnum)[keyof typeof AttachmentScalarFieldEnum]
+
+
 export const TaskStatusScalarFieldEnum = {
   id: 'id',
   text: 'text',
@@ -136,6 +149,7 @@ export const TaskStatusScalarFieldEnum = {
   isDefault: 'isDefault',
   isDoneStatus: 'isDoneStatus',
   statusOrder: 'statusOrder',
+  isEntryPoint: 'isEntryPoint',
   projectId: 'projectId'
 } as const
 

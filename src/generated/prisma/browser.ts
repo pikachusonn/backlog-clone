@@ -38,6 +38,11 @@ export type ProjectCollaborator = Prisma.ProjectCollaboratorModel
  */
 export type Task = Prisma.TaskModel
 /**
+ * Model Attachment
+ * 
+ */
+export type Attachment = Prisma.AttachmentModel
+/**
  * Model TaskStatus
  * 
  */

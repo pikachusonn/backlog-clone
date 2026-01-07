@@ -51,4 +51,17 @@ export class TaskRepository {
       },
     });
   }
+
+  async createTask(task: Prisma.TaskCreateInput): Promise<Task> {
+    return this.prisma.task.create({
+      data: task,
+      include: {
+        assignee: {
+          include: {
+            targetAccount: true,
+          },
+        },
+      },
+    });
+  }
 }

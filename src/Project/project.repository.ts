@@ -68,6 +68,7 @@ export class ProjectRepository {
               color: status.color,
               isDefault: true,
               isDoneStatus: status.isDoneStatus,
+              isEntryPoint: status.isEntryPoint,
               statusOrder: index,
             })),
           },

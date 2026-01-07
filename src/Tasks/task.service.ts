@@ -5,13 +5,14 @@ import { plainToInstance } from 'class-transformer';
 import { TaskDto } from './dto/task.dto.js';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PaginatedResult } from 'src/interface/common.js';
+import { CreateTaskDto } from './dto/createTask.dto.js';
 
 @Injectable()
 export class TaskService {
   constructor(
     private readonly taskRepository: TaskRepository,
     private readonly projectRepository: ProjectRepository,
-  ) { }
+  ) {}
 
   findTaskByProjectId = async (
     projectId: string,
@@ -69,6 +70,53 @@ export class TaskService {
       updatedTask,
     );
     return plainToInstance(TaskDto, result, {
+      excludeExtraneousValues: true,
+    });
+  };
+
+  createTask = async (
+    createTaskPayload: CreateTaskDto,
+    currentUserId: string,
+  ): Promise<TaskDto> => {
+    const project = await getProject(
+      createTaskPayload.projectId,
+      currentUserId,
+      this.projectRepository,
+    );
+
+    console.log('Entry point status id: ', project.taskStatuses);
+
+    const task = await this.taskRepository.createTask({
+      assignee: {
+        connect: {
+          id: createTaskPayload.assigneeId,
+        },
+      },
+      attachments: {
+        createMany: {
+          data: createTaskPayload.attachments.map((attachment) => ({
+            fileName: attachment.fileName,
+            fileUrl: attachment.fileUrl,
+            fileType: attachment.fileType,
+          })),
+        },
+      },
+      taskStatus: {
+        connect: {
+          id: project.taskStatuses.find((status) => status.isEntryPoint)?.id,
+        },
+      },
+      startDate: createTaskPayload.startDate,
+      dueDate: createTaskPayload.dueDate,
+      name: createTaskPayload.taskName,
+      description: createTaskPayload.description,
+      project: {
+        connect: {
+          id: project.id,
+        },
+      },
+    });
+    return plainToInstance(TaskDto, task, {
       excludeExtraneousValues: true,
     });
   };

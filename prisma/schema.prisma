@@ -44,17 +44,17 @@ model Project {
 }
 
 model ProjectCollaborator {
-    id             String              @id @default(uuid())
-    status         ProjectInviteStatus @default(PENDING_INVITE)
-    projectRole    ProjectRole         @default(COLLABORATOR)
-    accountId      String
-    projectId      String
-    inviteDueDate  DateTime?
+    id            String              @id @default(uuid())
+    status        ProjectInviteStatus @default(PENDING_INVITE)
+    projectRole   ProjectRole         @default(COLLABORATOR)
+    accountId     String
+    projectId     String
+    inviteDueDate DateTime?
     targetAccount Account             @relation(fields: [accountId], references: [id])
-    targetProject  Project             @relation(fields: [projectId], references: [id])
-    createdAt      DateTime            @default(now())
-    updatedAt      DateTime?           @updatedAt
-    tasks          Task[]
+    targetProject Project             @relation(fields: [projectId], references: [id])
+    createdAt     DateTime            @default(now())
+    updatedAt     DateTime?           @updatedAt
+    tasks         Task[]
 }
 
 model Task {
@@ -71,16 +71,28 @@ model Task {
     assignee     ProjectCollaborator? @relation(fields: [assigneeId], references: [id])
     taskStatusId String?
     taskStatus   TaskStatus?          @relation(fields: [taskStatusId], references: [id])
+    attachments  Attachment[]
+}
+
+model Attachment {
+    id        String   @id @default(uuid())
+    fileName  String
+    fileUrl   String
+    taskId    String
+    createdAt DateTime @default(now())
+    fileType  String
+    task      Task     @relation(fields: [taskId], references: [id])
 }
 
 model TaskStatus {
-    id           String  @id @default(uuid())
+    id           String   @id @default(uuid())
     text         String
     color        String
-    isDefault    Boolean @default(false)
+    isDefault    Boolean  @default(false)
     isDoneStatus Boolean? @default(false)
     tasks        Task[]
-    statusOrder  Int     @default(0)
+    statusOrder  Int      @default(0)
+    isEntryPoint Boolean  @default(false)
 
     projectId String
     project   Project @relation(fields: [projectId], references: [id])

@@ -56,7 +56,7 @@ export const getProject = async (
         errorKey: ErrorKey.NOT_FOUND,
       });
     }
-
+    console.log('Result: ', result);
     const convertedResult = plainToInstance(
       ProjectDetailDto,
       {

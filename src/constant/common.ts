@@ -22,6 +22,7 @@ export const DefaultTaskStatusText = [
   {
     text: 'To do',
     color: '#f45e53',
+    isEntryPoint: true,
   },
   {
     text: 'In progress',

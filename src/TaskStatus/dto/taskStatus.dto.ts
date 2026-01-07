@@ -13,6 +13,8 @@ export class TaskStatusDto {
   @Expose()
   isDoneStatus: boolean;
   @Expose()
+  isEntryPoint: boolean;
+  @Expose()
   statusOrder: number;
   @Expose()
   transitionsTo: StatusTransition[];
