@@ -19,6 +19,17 @@ enum ProjectRole {
     OWNER
 }
 
+enum TaskType {
+    BUG
+    TASK
+}
+
+enum TaskPriority {
+    LOW
+    MEDIUM
+    HIGH
+}
+
 model Account {
     id                   String                @id @default(uuid())
     email                String                @unique
@@ -72,6 +83,8 @@ model Task {
     taskStatusId String?
     taskStatus   TaskStatus?          @relation(fields: [taskStatusId], references: [id])
     attachments  Attachment[]
+    type         TaskType             @default(TASK)
+    priority     TaskPriority         @default(MEDIUM)
 }
 
 model Attachment {

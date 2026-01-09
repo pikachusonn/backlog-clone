@@ -25,3 +25,20 @@ export const ProjectRole = {
 } as const
 
 export type ProjectRole = (typeof ProjectRole)[keyof typeof ProjectRole]
+
+
+export const TaskType = {
+  BUG: 'BUG',
+  TASK: 'TASK'
+} as const
+
+export type TaskType = (typeof TaskType)[keyof typeof TaskType]
+
+
+export const TaskPriority = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH'
+} as const
+
+export type TaskPriority = (typeof TaskPriority)[keyof typeof TaskPriority]

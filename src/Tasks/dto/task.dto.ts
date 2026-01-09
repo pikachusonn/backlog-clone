@@ -1,5 +1,6 @@
 import { Expose, Type } from 'class-transformer';
 import { ProjectCollaboratorDto } from '../../ProjectCollaborator/dto/projectCollaborator.dto.js';
+import { AttachmentDto } from '../../Attachment/dto/attachment.dto.js';
 export class TaskDto {
   @Expose()
   id: string;
@@ -20,6 +21,13 @@ export class TaskDto {
   @Expose()
   @Type(() => ProjectCollaboratorDto)
   assignee: ProjectCollaboratorDto | null;
+  @Expose()
+  @Type(() => AttachmentDto)
+  attachments: AttachmentDto[] | null;
+  @Expose()
+  priority: string | null;
+  @Expose()
+  type: string | null;
   @Expose()
   taskStatusId: string | null;
 

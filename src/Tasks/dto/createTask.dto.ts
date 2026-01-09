@@ -1,12 +1,14 @@
 import { Type } from 'class-transformer';
 import {
   IsArray,
+  IsEnum,
   IsNotEmpty,
   IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
 import { CreateTaskAttachmentDto } from '../../Attachment/dto/createTaskAttachment.dto.js';
+import { TaskPriority, TaskType } from '../../generated/prisma/enums.js';
 
 export class CreateTaskDto {
   @IsNotEmpty({ message: 'Project ID is required' })
@@ -32,4 +34,8 @@ export class CreateTaskDto {
   @IsOptional()
   @IsString({ message: 'Due date must be a string' })
   dueDate: string;
+  @IsEnum(TaskPriority, { message: 'Invalid priority value' })
+  priority: TaskPriority;
+  @IsEnum(TaskType, { message: 'Invalid type value' })
+  type: TaskType;
 }

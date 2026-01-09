@@ -7,6 +7,7 @@ import {
   Put,
   Post,
   Body,
+  Patch,
 } from '@nestjs/common';
 import { TaskService } from './task.service.js';
 import { TaskDto } from './dto/task.dto.js';
@@ -14,6 +15,7 @@ import CurrentUser from '../decorators/current-user.decorator.js';
 import { JwtAuthGuard } from '../guard/JwtAuth.guard.js';
 import { PaginatedResult } from 'src/interface/common.js';
 import { CreateTaskDto } from './dto/createTask.dto.js';
+import { UpdateTaskDto } from './dto/updateTask.dto.js';
 
 @Controller('tasks')
 export class TaskController {
@@ -30,20 +32,60 @@ export class TaskController {
   ): Promise<PaginatedResult<TaskDto>> {
     return await this.taskService.findTaskByProjectId(
       projectId,
-      currentUser.userId,
+      currentUser.userId as string,
       pageSize,
       pageIndex,
       assigneeId,
     );
   }
 
-  @Put()
+  @Get('/taskDetail/:taskId')
+  @UseGuards(JwtAuthGuard)
+  async findTaskById(
+    @Param('taskId') taskId: string,
+    @CurrentUser() currentUser,
+  ): Promise<TaskDto> {
+    return await this.taskService.findTaskById(
+      taskId,
+      currentUser.userId as string,
+    );
+  }
+
+  @Put('/update-assignee')
   @UseGuards(JwtAuthGuard)
   async updateTaskAssignee(
     @Query('taskId') taskId: string,
     @Query('assigneeId') assigneeId: string,
   ): Promise<TaskDto> {
     return await this.taskService.updateTaskAssignee(taskId, assigneeId);
+  }
+
+  @Put('/update-status')
+  @UseGuards(JwtAuthGuard)
+  async updateTaskStatus(
+    @Query('taskId') taskId: string,
+    @Query('statusId') statusId: string,
+    @CurrentUser() currentUser,
+  ): Promise<TaskDto> {
+    return await this.taskService.updateTaskStatus(
+      taskId,
+      statusId,
+      currentUser.userId as string,
+    );
+  }
+
+  @Patch('/update-task/:taskId')
+  @UseGuards(JwtAuthGuard)
+  async updateTask(
+    @Body() updateTaskPayload: UpdateTaskDto,
+    @Param('taskId') taskId: string,
+    @CurrentUser() currentUser,
+  ): Promise<TaskDto> {
+    return await this.taskService.updateTask(
+      updateTaskPayload,
+      taskId,
+      currentUser.userId as string,
+    );
   }
 
   @Post()
@@ -54,7 +96,7 @@ export class TaskController {
   ): Promise<TaskDto> {
     return await this.taskService.createTask(
       createTaskPayload,
-      currentUser.userId,
+      currentUser.userId as string,
     );
   }
 }
