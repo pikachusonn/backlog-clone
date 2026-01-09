@@ -6,6 +6,7 @@ import { TaskDto } from './dto/task.dto.js';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PaginatedResult } from 'src/interface/common.js';
 import { CreateTaskDto } from './dto/createTask.dto.js';
+import { UpdateTaskDto } from './dto/updateTask.dto.js';
 
 @Injectable()
 export class TaskService {
@@ -13,6 +14,20 @@ export class TaskService {
     private readonly taskRepository: TaskRepository,
     private readonly projectRepository: ProjectRepository,
   ) {}
+
+  findTaskById = async (
+    taskId: string,
+    currentUserId: string,
+  ): Promise<TaskDto> => {
+    const task = await this.taskRepository.findTaskById(taskId);
+    if (!task) {
+      throw new NotFoundException('Task not found');
+    }
+    await getProject(task.projectId, currentUserId, this.projectRepository);
+    return plainToInstance(TaskDto, task, {
+      excludeExtraneousValues: true,
+    });
+  };
 
   findTaskByProjectId = async (
     projectId: string,
@@ -74,6 +89,48 @@ export class TaskService {
     });
   };
 
+  updateTaskStatus = async (
+    taskId: string,
+    statusId: string,
+    currentUserId: string,
+  ): Promise<TaskDto> => {
+    const task = await this.taskRepository.findTaskById(taskId);
+    if (!task) {
+      throw new NotFoundException('Task not found');
+    }
+    await getProject(task.projectId, currentUserId, this.projectRepository);
+    const updatedTask = {
+      ...task,
+      taskStatusId: statusId,
+    };
+    const result = await this.taskRepository.updateTaskById(
+      taskId,
+      updatedTask,
+    );
+    return plainToInstance(TaskDto, result, {
+      excludeExtraneousValues: true,
+    });
+  };
+
+  updateTask = async (
+    updateTaskPayload: UpdateTaskDto,
+    taskId: string,
+    currentUserId: string,
+  ): Promise<TaskDto> => {
+    const task = await this.taskRepository.findTaskById(taskId);
+    if (!task) {
+      throw new NotFoundException('Task not found');
+    }
+    await getProject(task.projectId, currentUserId, this.projectRepository);
+    const result = await this.taskRepository.updateTaskById(
+      taskId,
+      updateTaskPayload,
+    );
+    return plainToInstance(TaskDto, result, {
+      excludeExtraneousValues: true,
+    });
+  };
+
   createTask = async (
     createTaskPayload: CreateTaskDto,
     currentUserId: string,
@@ -83,9 +140,6 @@ export class TaskService {
       currentUserId,
       this.projectRepository,
     );
-
-    console.log('Entry point status id: ', project.taskStatuses);
-
     const task = await this.taskRepository.createTask({
       assignee: {
         connect: {
@@ -110,6 +164,8 @@ export class TaskService {
       dueDate: createTaskPayload.dueDate,
       name: createTaskPayload.taskName,
       description: createTaskPayload.description,
+      priority: createTaskPayload.priority,
+      type: createTaskPayload.type,
       project: {
         connect: {
           id: project.id,
