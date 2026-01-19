@@ -163,7 +163,8 @@ export const StatusTransitionScalarFieldEnum = {
   fromTaskStatusId: 'fromTaskStatusId',
   toTaskStatusId: 'toTaskStatusId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  projectId: 'projectId'
 } as const
 
 export type StatusTransitionScalarFieldEnum = (typeof StatusTransitionScalarFieldEnum)[keyof typeof StatusTransitionScalarFieldEnum]

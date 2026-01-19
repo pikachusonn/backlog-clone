@@ -30,6 +30,7 @@ export type StatusTransitionMinAggregateOutputType = {
   toTaskStatusId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  projectId: string | null
 }
 
 export type StatusTransitionMaxAggregateOutputType = {
@@ -38,6 +39,7 @@ export type StatusTransitionMaxAggregateOutputType = {
   toTaskStatusId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  projectId: string | null
 }
 
 export type StatusTransitionCountAggregateOutputType = {
@@ -46,6 +48,7 @@ export type StatusTransitionCountAggregateOutputType = {
   toTaskStatusId: number
   createdAt: number
   updatedAt: number
+  projectId: number
   _all: number
 }
 
@@ -56,6 +59,7 @@ export type StatusTransitionMinAggregateInputType = {
   toTaskStatusId?: true
   createdAt?: true
   updatedAt?: true
+  projectId?: true
 }
 
 export type StatusTransitionMaxAggregateInputType = {
@@ -64,6 +68,7 @@ export type StatusTransitionMaxAggregateInputType = {
   toTaskStatusId?: true
   createdAt?: true
   updatedAt?: true
+  projectId?: true
 }
 
 export type StatusTransitionCountAggregateInputType = {
@@ -72,6 +77,7 @@ export type StatusTransitionCountAggregateInputType = {
   toTaskStatusId?: true
   createdAt?: true
   updatedAt?: true
+  projectId?: true
   _all?: true
 }
 
@@ -153,6 +159,7 @@ export type StatusTransitionGroupByOutputType = {
   toTaskStatusId: string
   createdAt: Date
   updatedAt: Date | null
+  projectId: string
   _count: StatusTransitionCountAggregateOutputType | null
   _min: StatusTransitionMinAggregateOutputType | null
   _max: StatusTransitionMaxAggregateOutputType | null
@@ -182,8 +189,10 @@ export type StatusTransitionWhereInput = {
   toTaskStatusId?: Prisma.StringFilter<"StatusTransition"> | string
   createdAt?: Prisma.DateTimeFilter<"StatusTransition"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"StatusTransition"> | Date | string | null
+  projectId?: Prisma.StringFilter<"StatusTransition"> | string
   fromTaskStatus?: Prisma.XOR<Prisma.TaskStatusScalarRelationFilter, Prisma.TaskStatusWhereInput>
   toTaskStatus?: Prisma.XOR<Prisma.TaskStatusScalarRelationFilter, Prisma.TaskStatusWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
 }
 
 export type StatusTransitionOrderByWithRelationInput = {
@@ -192,8 +201,10 @@ export type StatusTransitionOrderByWithRelationInput = {
   toTaskStatusId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   fromTaskStatus?: Prisma.TaskStatusOrderByWithRelationInput
   toTaskStatus?: Prisma.TaskStatusOrderByWithRelationInput
+  project?: Prisma.ProjectOrderByWithRelationInput
 }
 
 export type StatusTransitionWhereUniqueInput = Prisma.AtLeast<{
@@ -205,8 +216,10 @@ export type StatusTransitionWhereUniqueInput = Prisma.AtLeast<{
   toTaskStatusId?: Prisma.StringFilter<"StatusTransition"> | string
   createdAt?: Prisma.DateTimeFilter<"StatusTransition"> | Date | string
   updatedAt?: Prisma.DateTimeNullableFilter<"StatusTransition"> | Date | string | null
+  projectId?: Prisma.StringFilter<"StatusTransition"> | string
   fromTaskStatus?: Prisma.XOR<Prisma.TaskStatusScalarRelationFilter, Prisma.TaskStatusWhereInput>
   toTaskStatus?: Prisma.XOR<Prisma.TaskStatusScalarRelationFilter, Prisma.TaskStatusWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
 }, "id">
 
 export type StatusTransitionOrderByWithAggregationInput = {
@@ -215,6 +228,7 @@ export type StatusTransitionOrderByWithAggregationInput = {
   toTaskStatusId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   _count?: Prisma.StatusTransitionCountOrderByAggregateInput
   _max?: Prisma.StatusTransitionMaxOrderByAggregateInput
   _min?: Prisma.StatusTransitionMinOrderByAggregateInput
@@ -229,6 +243,7 @@ export type StatusTransitionScalarWhereWithAggregatesInput = {
   toTaskStatusId?: Prisma.StringWithAggregatesFilter<"StatusTransition"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StatusTransition"> | Date | string
   updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"StatusTransition"> | Date | string | null
+  projectId?: Prisma.StringWithAggregatesFilter<"StatusTransition"> | string
 }
 
 export type StatusTransitionCreateInput = {
@@ -237,6 +252,7 @@ export type StatusTransitionCreateInput = {
   updatedAt?: Date | string | null
   fromTaskStatus: Prisma.TaskStatusCreateNestedOneWithoutTransitionsFromInput
   toTaskStatus: Prisma.TaskStatusCreateNestedOneWithoutTransitionsToInput
+  project: Prisma.ProjectCreateNestedOneWithoutTransitionsInput
 }
 
 export type StatusTransitionUncheckedCreateInput = {
@@ -245,6 +261,7 @@ export type StatusTransitionUncheckedCreateInput = {
   toTaskStatusId: string
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  projectId: string
 }
 
 export type StatusTransitionUpdateInput = {
@@ -253,6 +270,7 @@ export type StatusTransitionUpdateInput = {
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fromTaskStatus?: Prisma.TaskStatusUpdateOneRequiredWithoutTransitionsFromNestedInput
   toTaskStatus?: Prisma.TaskStatusUpdateOneRequiredWithoutTransitionsToNestedInput
+  project?: Prisma.ProjectUpdateOneRequiredWithoutTransitionsNestedInput
 }
 
 export type StatusTransitionUncheckedUpdateInput = {
@@ -261,6 +279,7 @@ export type StatusTransitionUncheckedUpdateInput = {
   toTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  projectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StatusTransitionCreateManyInput = {
@@ -269,6 +288,7 @@ export type StatusTransitionCreateManyInput = {
   toTaskStatusId: string
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  projectId: string
 }
 
 export type StatusTransitionUpdateManyMutationInput = {
@@ -283,6 +303,7 @@ export type StatusTransitionUncheckedUpdateManyInput = {
   toTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  projectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StatusTransitionListRelationFilter = {
@@ -301,6 +322,7 @@ export type StatusTransitionCountOrderByAggregateInput = {
   toTaskStatusId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
 }
 
 export type StatusTransitionMaxOrderByAggregateInput = {
@@ -309,6 +331,7 @@ export type StatusTransitionMaxOrderByAggregateInput = {
   toTaskStatusId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
 }
 
 export type StatusTransitionMinOrderByAggregateInput = {
@@ -317,6 +340,49 @@ export type StatusTransitionMinOrderByAggregateInput = {
   toTaskStatusId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
+}
+
+export type StatusTransitionCreateNestedManyWithoutProjectInput = {
+  create?: Prisma.XOR<Prisma.StatusTransitionCreateWithoutProjectInput, Prisma.StatusTransitionUncheckedCreateWithoutProjectInput> | Prisma.StatusTransitionCreateWithoutProjectInput[] | Prisma.StatusTransitionUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.StatusTransitionCreateOrConnectWithoutProjectInput | Prisma.StatusTransitionCreateOrConnectWithoutProjectInput[]
+  createMany?: Prisma.StatusTransitionCreateManyProjectInputEnvelope
+  connect?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+}
+
+export type StatusTransitionUncheckedCreateNestedManyWithoutProjectInput = {
+  create?: Prisma.XOR<Prisma.StatusTransitionCreateWithoutProjectInput, Prisma.StatusTransitionUncheckedCreateWithoutProjectInput> | Prisma.StatusTransitionCreateWithoutProjectInput[] | Prisma.StatusTransitionUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.StatusTransitionCreateOrConnectWithoutProjectInput | Prisma.StatusTransitionCreateOrConnectWithoutProjectInput[]
+  createMany?: Prisma.StatusTransitionCreateManyProjectInputEnvelope
+  connect?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+}
+
+export type StatusTransitionUpdateManyWithoutProjectNestedInput = {
+  create?: Prisma.XOR<Prisma.StatusTransitionCreateWithoutProjectInput, Prisma.StatusTransitionUncheckedCreateWithoutProjectInput> | Prisma.StatusTransitionCreateWithoutProjectInput[] | Prisma.StatusTransitionUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.StatusTransitionCreateOrConnectWithoutProjectInput | Prisma.StatusTransitionCreateOrConnectWithoutProjectInput[]
+  upsert?: Prisma.StatusTransitionUpsertWithWhereUniqueWithoutProjectInput | Prisma.StatusTransitionUpsertWithWhereUniqueWithoutProjectInput[]
+  createMany?: Prisma.StatusTransitionCreateManyProjectInputEnvelope
+  set?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+  disconnect?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+  delete?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+  connect?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+  update?: Prisma.StatusTransitionUpdateWithWhereUniqueWithoutProjectInput | Prisma.StatusTransitionUpdateWithWhereUniqueWithoutProjectInput[]
+  updateMany?: Prisma.StatusTransitionUpdateManyWithWhereWithoutProjectInput | Prisma.StatusTransitionUpdateManyWithWhereWithoutProjectInput[]
+  deleteMany?: Prisma.StatusTransitionScalarWhereInput | Prisma.StatusTransitionScalarWhereInput[]
+}
+
+export type StatusTransitionUncheckedUpdateManyWithoutProjectNestedInput = {
+  create?: Prisma.XOR<Prisma.StatusTransitionCreateWithoutProjectInput, Prisma.StatusTransitionUncheckedCreateWithoutProjectInput> | Prisma.StatusTransitionCreateWithoutProjectInput[] | Prisma.StatusTransitionUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.StatusTransitionCreateOrConnectWithoutProjectInput | Prisma.StatusTransitionCreateOrConnectWithoutProjectInput[]
+  upsert?: Prisma.StatusTransitionUpsertWithWhereUniqueWithoutProjectInput | Prisma.StatusTransitionUpsertWithWhereUniqueWithoutProjectInput[]
+  createMany?: Prisma.StatusTransitionCreateManyProjectInputEnvelope
+  set?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+  disconnect?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+  delete?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+  connect?: Prisma.StatusTransitionWhereUniqueInput | Prisma.StatusTransitionWhereUniqueInput[]
+  update?: Prisma.StatusTransitionUpdateWithWhereUniqueWithoutProjectInput | Prisma.StatusTransitionUpdateWithWhereUniqueWithoutProjectInput[]
+  updateMany?: Prisma.StatusTransitionUpdateManyWithWhereWithoutProjectInput | Prisma.StatusTransitionUpdateManyWithWhereWithoutProjectInput[]
+  deleteMany?: Prisma.StatusTransitionScalarWhereInput | Prisma.StatusTransitionScalarWhereInput[]
 }
 
 export type StatusTransitionCreateNestedManyWithoutFromTaskStatusInput = {
@@ -403,11 +469,66 @@ export type StatusTransitionUncheckedUpdateManyWithoutToTaskStatusNestedInput = 
   deleteMany?: Prisma.StatusTransitionScalarWhereInput | Prisma.StatusTransitionScalarWhereInput[]
 }
 
+export type StatusTransitionCreateWithoutProjectInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+  fromTaskStatus: Prisma.TaskStatusCreateNestedOneWithoutTransitionsFromInput
+  toTaskStatus: Prisma.TaskStatusCreateNestedOneWithoutTransitionsToInput
+}
+
+export type StatusTransitionUncheckedCreateWithoutProjectInput = {
+  id?: string
+  fromTaskStatusId: string
+  toTaskStatusId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+}
+
+export type StatusTransitionCreateOrConnectWithoutProjectInput = {
+  where: Prisma.StatusTransitionWhereUniqueInput
+  create: Prisma.XOR<Prisma.StatusTransitionCreateWithoutProjectInput, Prisma.StatusTransitionUncheckedCreateWithoutProjectInput>
+}
+
+export type StatusTransitionCreateManyProjectInputEnvelope = {
+  data: Prisma.StatusTransitionCreateManyProjectInput | Prisma.StatusTransitionCreateManyProjectInput[]
+  skipDuplicates?: boolean
+}
+
+export type StatusTransitionUpsertWithWhereUniqueWithoutProjectInput = {
+  where: Prisma.StatusTransitionWhereUniqueInput
+  update: Prisma.XOR<Prisma.StatusTransitionUpdateWithoutProjectInput, Prisma.StatusTransitionUncheckedUpdateWithoutProjectInput>
+  create: Prisma.XOR<Prisma.StatusTransitionCreateWithoutProjectInput, Prisma.StatusTransitionUncheckedCreateWithoutProjectInput>
+}
+
+export type StatusTransitionUpdateWithWhereUniqueWithoutProjectInput = {
+  where: Prisma.StatusTransitionWhereUniqueInput
+  data: Prisma.XOR<Prisma.StatusTransitionUpdateWithoutProjectInput, Prisma.StatusTransitionUncheckedUpdateWithoutProjectInput>
+}
+
+export type StatusTransitionUpdateManyWithWhereWithoutProjectInput = {
+  where: Prisma.StatusTransitionScalarWhereInput
+  data: Prisma.XOR<Prisma.StatusTransitionUpdateManyMutationInput, Prisma.StatusTransitionUncheckedUpdateManyWithoutProjectInput>
+}
+
+export type StatusTransitionScalarWhereInput = {
+  AND?: Prisma.StatusTransitionScalarWhereInput | Prisma.StatusTransitionScalarWhereInput[]
+  OR?: Prisma.StatusTransitionScalarWhereInput[]
+  NOT?: Prisma.StatusTransitionScalarWhereInput | Prisma.StatusTransitionScalarWhereInput[]
+  id?: Prisma.StringFilter<"StatusTransition"> | string
+  fromTaskStatusId?: Prisma.StringFilter<"StatusTransition"> | string
+  toTaskStatusId?: Prisma.StringFilter<"StatusTransition"> | string
+  createdAt?: Prisma.DateTimeFilter<"StatusTransition"> | Date | string
+  updatedAt?: Prisma.DateTimeNullableFilter<"StatusTransition"> | Date | string | null
+  projectId?: Prisma.StringFilter<"StatusTransition"> | string
+}
+
 export type StatusTransitionCreateWithoutFromTaskStatusInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string | null
   toTaskStatus: Prisma.TaskStatusCreateNestedOneWithoutTransitionsToInput
+  project: Prisma.ProjectCreateNestedOneWithoutTransitionsInput
 }
 
 export type StatusTransitionUncheckedCreateWithoutFromTaskStatusInput = {
@@ -415,6 +536,7 @@ export type StatusTransitionUncheckedCreateWithoutFromTaskStatusInput = {
   toTaskStatusId: string
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  projectId: string
 }
 
 export type StatusTransitionCreateOrConnectWithoutFromTaskStatusInput = {
@@ -432,6 +554,7 @@ export type StatusTransitionCreateWithoutToTaskStatusInput = {
   createdAt?: Date | string
   updatedAt?: Date | string | null
   fromTaskStatus: Prisma.TaskStatusCreateNestedOneWithoutTransitionsFromInput
+  project: Prisma.ProjectCreateNestedOneWithoutTransitionsInput
 }
 
 export type StatusTransitionUncheckedCreateWithoutToTaskStatusInput = {
@@ -439,6 +562,7 @@ export type StatusTransitionUncheckedCreateWithoutToTaskStatusInput = {
   fromTaskStatusId: string
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  projectId: string
 }
 
 export type StatusTransitionCreateOrConnectWithoutToTaskStatusInput = {
@@ -467,17 +591,6 @@ export type StatusTransitionUpdateManyWithWhereWithoutFromTaskStatusInput = {
   data: Prisma.XOR<Prisma.StatusTransitionUpdateManyMutationInput, Prisma.StatusTransitionUncheckedUpdateManyWithoutFromTaskStatusInput>
 }
 
-export type StatusTransitionScalarWhereInput = {
-  AND?: Prisma.StatusTransitionScalarWhereInput | Prisma.StatusTransitionScalarWhereInput[]
-  OR?: Prisma.StatusTransitionScalarWhereInput[]
-  NOT?: Prisma.StatusTransitionScalarWhereInput | Prisma.StatusTransitionScalarWhereInput[]
-  id?: Prisma.StringFilter<"StatusTransition"> | string
-  fromTaskStatusId?: Prisma.StringFilter<"StatusTransition"> | string
-  toTaskStatusId?: Prisma.StringFilter<"StatusTransition"> | string
-  createdAt?: Prisma.DateTimeFilter<"StatusTransition"> | Date | string
-  updatedAt?: Prisma.DateTimeNullableFilter<"StatusTransition"> | Date | string | null
-}
-
 export type StatusTransitionUpsertWithWhereUniqueWithoutToTaskStatusInput = {
   where: Prisma.StatusTransitionWhereUniqueInput
   update: Prisma.XOR<Prisma.StatusTransitionUpdateWithoutToTaskStatusInput, Prisma.StatusTransitionUncheckedUpdateWithoutToTaskStatusInput>
@@ -494,11 +607,44 @@ export type StatusTransitionUpdateManyWithWhereWithoutToTaskStatusInput = {
   data: Prisma.XOR<Prisma.StatusTransitionUpdateManyMutationInput, Prisma.StatusTransitionUncheckedUpdateManyWithoutToTaskStatusInput>
 }
 
+export type StatusTransitionCreateManyProjectInput = {
+  id?: string
+  fromTaskStatusId: string
+  toTaskStatusId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string | null
+}
+
+export type StatusTransitionUpdateWithoutProjectInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fromTaskStatus?: Prisma.TaskStatusUpdateOneRequiredWithoutTransitionsFromNestedInput
+  toTaskStatus?: Prisma.TaskStatusUpdateOneRequiredWithoutTransitionsToNestedInput
+}
+
+export type StatusTransitionUncheckedUpdateWithoutProjectInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fromTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
+  toTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type StatusTransitionUncheckedUpdateManyWithoutProjectInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fromTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
+  toTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
 export type StatusTransitionCreateManyFromTaskStatusInput = {
   id?: string
   toTaskStatusId: string
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  projectId: string
 }
 
 export type StatusTransitionCreateManyToTaskStatusInput = {
@@ -506,6 +652,7 @@ export type StatusTransitionCreateManyToTaskStatusInput = {
   fromTaskStatusId: string
   createdAt?: Date | string
   updatedAt?: Date | string | null
+  projectId: string
 }
 
 export type StatusTransitionUpdateWithoutFromTaskStatusInput = {
@@ -513,6 +660,7 @@ export type StatusTransitionUpdateWithoutFromTaskStatusInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   toTaskStatus?: Prisma.TaskStatusUpdateOneRequiredWithoutTransitionsToNestedInput
+  project?: Prisma.ProjectUpdateOneRequiredWithoutTransitionsNestedInput
 }
 
 export type StatusTransitionUncheckedUpdateWithoutFromTaskStatusInput = {
@@ -520,6 +668,7 @@ export type StatusTransitionUncheckedUpdateWithoutFromTaskStatusInput = {
   toTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  projectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StatusTransitionUncheckedUpdateManyWithoutFromTaskStatusInput = {
@@ -527,6 +676,7 @@ export type StatusTransitionUncheckedUpdateManyWithoutFromTaskStatusInput = {
   toTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  projectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StatusTransitionUpdateWithoutToTaskStatusInput = {
@@ -534,6 +684,7 @@ export type StatusTransitionUpdateWithoutToTaskStatusInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   fromTaskStatus?: Prisma.TaskStatusUpdateOneRequiredWithoutTransitionsFromNestedInput
+  project?: Prisma.ProjectUpdateOneRequiredWithoutTransitionsNestedInput
 }
 
 export type StatusTransitionUncheckedUpdateWithoutToTaskStatusInput = {
@@ -541,6 +692,7 @@ export type StatusTransitionUncheckedUpdateWithoutToTaskStatusInput = {
   fromTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  projectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StatusTransitionUncheckedUpdateManyWithoutToTaskStatusInput = {
@@ -548,6 +700,7 @@ export type StatusTransitionUncheckedUpdateManyWithoutToTaskStatusInput = {
   fromTaskStatusId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  projectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -558,8 +711,10 @@ export type StatusTransitionSelect<ExtArgs extends runtime.Types.Extensions.Inte
   toTaskStatusId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  projectId?: boolean
   fromTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
   toTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["statusTransition"]>
 
 export type StatusTransitionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -568,8 +723,10 @@ export type StatusTransitionSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   toTaskStatusId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  projectId?: boolean
   fromTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
   toTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["statusTransition"]>
 
 export type StatusTransitionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -578,8 +735,10 @@ export type StatusTransitionSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   toTaskStatusId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  projectId?: boolean
   fromTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
   toTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["statusTransition"]>
 
 export type StatusTransitionSelectScalar = {
@@ -588,20 +747,24 @@ export type StatusTransitionSelectScalar = {
   toTaskStatusId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  projectId?: boolean
 }
 
-export type StatusTransitionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fromTaskStatusId" | "toTaskStatusId" | "createdAt" | "updatedAt", ExtArgs["result"]["statusTransition"]>
+export type StatusTransitionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fromTaskStatusId" | "toTaskStatusId" | "createdAt" | "updatedAt" | "projectId", ExtArgs["result"]["statusTransition"]>
 export type StatusTransitionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   fromTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
   toTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 export type StatusTransitionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   fromTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
   toTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 export type StatusTransitionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   fromTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
   toTaskStatus?: boolean | Prisma.TaskStatusDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 
 export type $StatusTransitionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -609,6 +772,7 @@ export type $StatusTransitionPayload<ExtArgs extends runtime.Types.Extensions.In
   objects: {
     fromTaskStatus: Prisma.$TaskStatusPayload<ExtArgs>
     toTaskStatus: Prisma.$TaskStatusPayload<ExtArgs>
+    project: Prisma.$ProjectPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -616,6 +780,7 @@ export type $StatusTransitionPayload<ExtArgs extends runtime.Types.Extensions.In
     toTaskStatusId: string
     createdAt: Date
     updatedAt: Date | null
+    projectId: string
   }, ExtArgs["result"]["statusTransition"]>
   composites: {}
 }
@@ -1012,6 +1177,7 @@ export interface Prisma__StatusTransitionClient<T, Null = never, ExtArgs extends
   readonly [Symbol.toStringTag]: "PrismaPromise"
   fromTaskStatus<T extends Prisma.TaskStatusDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TaskStatusDefaultArgs<ExtArgs>>): Prisma.Prisma__TaskStatusClient<runtime.Types.Result.GetResult<Prisma.$TaskStatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   toTaskStatus<T extends Prisma.TaskStatusDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TaskStatusDefaultArgs<ExtArgs>>): Prisma.Prisma__TaskStatusClient<runtime.Types.Result.GetResult<Prisma.$TaskStatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  project<T extends Prisma.ProjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProjectDefaultArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1046,6 +1212,7 @@ export interface StatusTransitionFieldRefs {
   readonly toTaskStatusId: Prisma.FieldRef<"StatusTransition", 'String'>
   readonly createdAt: Prisma.FieldRef<"StatusTransition", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"StatusTransition", 'DateTime'>
+  readonly projectId: Prisma.FieldRef<"StatusTransition", 'String'>
 }
     
 

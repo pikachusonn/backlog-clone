@@ -5,6 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 import { ProjectModule } from './Project/project.module.js';
 import { AuthModule } from './Auth/auth.module.js';
 import { TaskModule } from './Tasks/task.module.js';
+import { TaskStatusModule } from './TaskStatus/taskStatus.module.js';
+import { TransitionModule } from './Transitions/transition.module.js';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { TaskModule } from './Tasks/task.module.js';
     ProjectModule,
     TaskModule,
     AuthModule,
+    TaskStatusModule,
+    TransitionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
