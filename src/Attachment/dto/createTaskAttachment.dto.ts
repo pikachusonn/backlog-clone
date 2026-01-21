@@ -1,6 +1,9 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateTaskAttachmentDto {
+  @IsOptional()
+  @IsString({ message: 'ID must be a string' })
+  id?: string;
   @IsString({ message: 'File name must be a string' })
   @IsNotEmpty({ message: 'File name is required' })
   fileName: string;
