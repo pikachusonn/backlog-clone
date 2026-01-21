@@ -38,7 +38,6 @@ export class TaskRepository {
           include: {
             targetAccount: true,
           },
-          attachments: true,
         },
         attachments: true,
       },
