@@ -60,7 +60,7 @@ export class TaskController {
     return await this.taskService.updateTaskAssignee(taskId, assigneeId);
   }
 
-  @Put('/update-status')
+  @Patch('/update-status')
   @UseGuards(JwtAuthGuard)
   async updateTaskStatus(
     @Query('taskId') taskId: string,

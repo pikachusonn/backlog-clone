@@ -4,7 +4,7 @@ import { PrismaService } from '../service/prisma.service.js';
 
 @Injectable()
 export class TaskRepository {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   async findTaskByProjectId(
     projectId: string,
@@ -70,7 +70,6 @@ export class TaskRepository {
             },
           });
         }
-
         if (task) {
           await tx.task.update({
             where: { id: taskId },
@@ -98,8 +97,7 @@ export class TaskRepository {
         });
       });
     } catch (error) {
-      console.log(error);
-      throw new InternalServerErrorException('Failed to update task');
+      throw new InternalServerErrorException('Failed to update task', error);
     }
   }
 

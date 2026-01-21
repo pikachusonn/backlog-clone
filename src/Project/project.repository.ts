@@ -48,6 +48,7 @@ export class ProjectRepository {
       include: {
         createdByAccount: true,
         taskStatuses: true,
+        transitions: true,
         projectCollaborators: {
           include: {
             targetAccount: true,

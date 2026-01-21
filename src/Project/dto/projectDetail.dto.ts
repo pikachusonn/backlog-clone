@@ -3,6 +3,7 @@ import { CommonAccountDto } from '../../Account/dto/commonAccount.dto.js';
 import { ProjectRole } from '../../constant/common.js';
 import { ProjectCollaboratorDto } from '../../ProjectCollaborator/dto/projectCollaborator.dto.js';
 import { TaskStatusDto } from '../../TaskStatus/dto/taskStatus.dto.js';
+import { TransitionDto } from '../../Transitions/dto/transition.dto.js';
 
 export class ProjectDetailDto {
   @Expose()
@@ -28,7 +29,9 @@ export class ProjectDetailDto {
   @Expose()
   @Type(() => TaskStatusDto)
   taskStatuses: TaskStatusDto[];
-
+  @Expose()
+  @Type(() => TransitionDto)
+  transitions: TransitionDto[];
   constructor(partial: Partial<ProjectDetailDto>) {
     Object.assign(this, partial);
   }
